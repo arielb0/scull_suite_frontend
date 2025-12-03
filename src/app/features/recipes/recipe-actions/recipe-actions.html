@@ -1,0 +1,8 @@
+<a matButton [routerLink]="['/recipes', recipe().id, 'update']">
+    <mat-icon fontIcon="edit"></mat-icon>
+    Update
+</a>
+<button matButton (click)="openDialog(recipe().id ?? 0)">
+    <mat-icon fontIcon="delete" ></mat-icon>
+    Delete
+</button>

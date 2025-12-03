@@ -1,0 +1,13 @@
+<section>
+ 
+  <div class="card-container">
+    
+      @for (recipe of recipes$ | async; track recipe.id) {
+        <app-recipe-card [recipe]="recipe"></app-recipe-card>
+      } @empty {
+        <app-loading-spinner loadingMessage="Loading recipes.."></app-loading-spinner>
+      }
+    
+  </div>
+  
+</section>

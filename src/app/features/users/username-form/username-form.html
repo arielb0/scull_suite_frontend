@@ -1,0 +1,17 @@
+<section>
+    <form [formGroup]="usernameForm" (submit)="submitUsername()">
+        <div class="form-container">
+            <mat-form-field>
+                <mat-label>New Username</mat-label>
+                <input matInput [formControl]="usernameForm.controls.username" required />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput [formControl]="usernameForm.controls.password" required type="password"/>
+            </mat-form-field>
+
+            <button matButton>Change username</button>
+        </div>
+    </form>
+</section>

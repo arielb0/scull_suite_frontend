@@ -1,0 +1,22 @@
+<section>
+    <h1>Account activation status</h1>
+    @if (activationStatus == 0) {
+        <app-loading-spinner loadingMessage="Requesting your account activation. Please, wait.."></app-loading-spinner>
+    } @else if (activationStatus == 1) {
+        <div class="img-container">
+            <img src="images/checkmark_green_circle.svg" alt="Green checkmark inside circle">
+        </div>
+        
+        <p>Account activation complete. You can login using your account</p>
+        <a matButton routerLink="/auth/login">Login</a>
+    } @else if (activationStatus == 2) {
+        <div class="img-container">
+            <img src="images/cross_red_circle.svg" alt="Red cross inside circle">
+        </div>
+        <p>
+            Account activation error. Your account is already active or the activation link expired. 
+            Please, try again, <a routerLink="/users/re_activate">requesting another activation link</a>.
+            If the problem persists, contact the support team.
+        </p>
+    }
+</section>

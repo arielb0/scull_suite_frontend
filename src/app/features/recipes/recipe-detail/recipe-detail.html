@@ -1,0 +1,30 @@
+@if (recipe) {
+  
+  <section class="main-section">
+    @if (recipe.user == authService.getUserId()) {
+      <section>
+        <app-recipe-actions [recipe]="recipe"></app-recipe-actions>
+      </section>
+    }
+
+    <h1 class="heading">{{ recipe.title }}</h1>
+    <img [src]="recipe.image" [alt]="recipe.title" lazy class="image-item">
+    
+    <h2 class="heading">Ingredients</h2>
+    <mat-list role="list">      
+      @for (ingredient of recipe.ingredients.split(','); track $index) {
+        <mat-list-item role="listitem">{{ ingredient }}</mat-list-item>
+      }
+    </mat-list>
+    <h2 class="heading">Tools</h2>
+    <mat-list role="list">
+      @for (tool of recipe.tools.split(','); track $index) {
+        <mat-list-item role="listitem">{{ tool }}</mat-list-item>
+      }
+    </mat-list>
+    <h2 class="heading">Instructions</h2>
+    <p class="description">{{ recipe.description }}</p>
+  </section>
+} @else {
+  <app-loading-spinner loadingMessage="Loading recipe data.."></app-loading-spinner>
+}

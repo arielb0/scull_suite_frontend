@@ -1,0 +1,20 @@
+<h2>Delete user confirmation</h2>
+<mat-dialog-content>
+    <p>
+        If you delete your user, all related data will be erased too. 
+        This action can be undone. To confirm deletion action, you need to put your password below.
+    </p>
+    <form [formGroup]="deleteConfirmationForm" (submit)="deleteUser()">
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput [formControl]="deleteConfirmationForm.controls.password" required type="password"/>
+        </mat-form-field>
+
+        <button matButton>Delete user</button>
+    </form>
+    
+    
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button matButton (click)="closeDialog()">No</button>
+</mat-dialog-actions>

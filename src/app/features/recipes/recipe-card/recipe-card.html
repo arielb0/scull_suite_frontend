@@ -1,0 +1,18 @@
+
+<mat-card class="recipe-card" appearance="outlined">
+  
+  <img mat-card-image [src]="recipe().image" [alt]="recipe().title" lazy
+  (click)="goToRecipeDetail(recipe().id ?? 0)"
+  class="img-click"/>
+
+  <mat-card-header>
+    <mat-card-title>{{ recipe().title }}</mat-card-title>
+  </mat-card-header>
+
+  @if (recipe().user == authService.getUserId()) {
+    <section>
+      <app-recipe-actions [recipe]="recipe()"></app-recipe-actions>
+    </section>
+  }
+</mat-card>
+

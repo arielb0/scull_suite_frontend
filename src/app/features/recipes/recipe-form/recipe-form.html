@@ -1,0 +1,47 @@
+<section>
+  <form [formGroup]="recipeForm" (submit)="submitRecipe()">   
+    <div class="form-container">
+      <div>
+        <label for="imageFile">Recipe Image</label>
+        <input type="file" id="imageFile" (change)="onFileSelected($event)" />
+      </div>
+      
+      <div>
+        @if (uploadedImage) {
+          <p>Current image:</p>
+          <img [src]="uploadedImage" alt="Current image" width="300">
+        }
+      </div>
+
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput [formControl]="recipeForm.controls.title" required />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Ingredients</mat-label>
+        <input matInput [formControl]="recipeForm.controls.ingredients" required />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Tools</mat-label>
+        <input matInput [formControl]="recipeForm.controls.tools" required />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput [formControl]="recipeForm.controls.description" required></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Private</mat-label>
+        <mat-select [formControl]="recipeForm.controls.private">
+          <mat-option value="true">True</mat-option>
+          <mat-option value="false">False</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button matButton [disabled]="!recipeForm.valid">Create or update</button>
+    </div>
+  </form>
+</section>

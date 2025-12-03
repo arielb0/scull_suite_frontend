@@ -1,0 +1,25 @@
+<section>
+    <form [formGroup]="userForm" (submit)="submitUser()">
+        <div class="form-container">
+            <mat-form-field>
+                <mat-label>Username</mat-label>
+                <input matInput [formControl]="userForm.controls.username" required />
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput [formControl]="userForm.controls.email" required type="email"/>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Password</mat-label>
+                <input matInput [formControl]="userForm.controls.password" required type="password"/>
+            </mat-form-field>
+
+            <p class="text-form">Forgot your activation link? <a routerLink="/users/resend-activation">Request a new one</a></p>            
+
+            <button matButton>Register</button>
+            
+        </div>
+    </form>
+</section>

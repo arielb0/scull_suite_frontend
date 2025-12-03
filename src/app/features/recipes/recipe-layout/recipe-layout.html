@@ -1,0 +1,48 @@
+<mat-toolbar>
+    <button matIconButton (click)="sidenav.toggle()">
+        <mat-icon fontIcon="menu"></mat-icon>
+    </button>
+    <span>
+        <a matButton routerLink="/recipes">Recipes</a>
+    </span>
+    <span class="spacer"></span>
+    @if (authService.getUsername() !== null) {
+        <button matButton [matMenuTriggerFor]="userMenu">
+            <mat-icon fontIcon="account_circle"></mat-icon>
+            {{ authService.getUsername() }}
+        </button>
+        <mat-menu #userMenu>
+            <a mat-menu-item target="_blank" [routerLink]="['/users/me']">
+                <mat-icon fontIcon="settings_account_box"></mat-icon>
+                Details
+            </a>
+            <a mat-menu-item (click)="logoutAction()">
+                <mat-icon fontIcon="logout"></mat-icon>
+                Logout
+            </a>
+        </mat-menu>
+    } @else {
+        <a matButton routerLink="/auth/login">
+            <mat-icon fontIcon="login"></mat-icon>
+            Login
+        </a>
+        <a matButton routerLink="/users/create">
+            <mat-icon fontIcon="person_add"></mat-icon>
+            Register
+        </a>
+    }
+</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav [(opened)]="sidebarOpened" mode="side" class="sidenav">
+        <mat-nav-list>
+            <a mat-list-item routerLink="/recipes/create">
+                <mat-icon matListItemIcon fontIcon="add"></mat-icon>
+                Add Recipe
+            </a>
+        </mat-nav-list>
+        
+    </mat-sidenav>    
+    <mat-sidenav-content class="main-content">        
+        <router-outlet />
+    </mat-sidenav-content>
+</mat-sidenav-container>
