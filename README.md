@@ -1,4 +1,4 @@
-# Scull Suite Backend
+# Scull Suite Frontend
 
 ## Description
 
