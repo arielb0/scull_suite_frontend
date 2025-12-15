@@ -64,13 +64,11 @@ with light frameworks, like React based, Vue or Svelte.
 - **Nginx:** Offer high performance, scalability, without consume excessive resources.
 Is a good option to serve static files, caching them and apply SSL certificates. Allow
 future horizontal scaling with minimal configuration. Also has a great documentation. Other
-alternatives are Apache HTTP Server and Caddy/Lighttpd, but are heavier for concurrent connections and has smaller community for production grade Python applications.
-
-Other alternative was serve static content using a Content Delivery Network (CDN), but
+alternatives are Apache HTTP Server and Caddy/Lighttpd, but are heavier for concurrent connections and has smaller community for production grade Python applications.Other 
+alternative was serve static content using a Content Delivery Network (CDN), but
 the application has a few files, the project is for a single region and the primary
-goal is simplicity, reduce operational complexity and cost efficiency.
-
-The trade-offs are high latency for geographically distant users and less secure scenario
+goal is simplicity, reduce operational complexity and cost efficiency.The trade-offs
+ are high latency for geographically distant users and less secure scenario
 on traffic spikes or Denial of Service (DDoS) attacks.
 
 - **English:** The document is aimed at international developers 
