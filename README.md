@@ -14,6 +14,24 @@ modify account data.
 - **Recipes:** Web applications to manage cook recipes. It uses authentication and permissions
 to decide who access or modify recipes entities.
 
+## Key Learnings
+
+- Apply best practices to organize frontend code using layered architecture, modular design and separation of concerns.
+- Consume a API REST endpoints that use JWT tokens as authentication mechanism.
+- Manage environment-dependent variables.
+- Deploy a production-ready application, using a production-ready optimized server setup.
+- Use top-down development methdology and use of fake data to quickly build an MVP.
+
+## Technology Stack
+
+- TypeScript
+- Angular
+- json-server
+- Angular Material
+- Nginx
+- GNU/Linux (Debian)
+- Visual Studio Code
+
 ## Architecture
 
 - **app.routes.ts:** Routing layer. Associate (mapping) Angular Components with a URL.
@@ -28,29 +46,14 @@ data needed for several components on presentation layer.
 - **core/api-rest-service**: Data access layer. Encapsulate logic needed to make requests
 and receive responses from backend, using HTTP methods. Serialize and de serialize data. Allow avoid repeating code on feature service layer.
 
-## Technology Stack
-
-- TypeScript
-- Angular
-- Nginx
-- GNU/Linux (Debian)
-- Visual Studio Code
-
 ## Deployment (Production)
 
 The service runs on GNU/Linux environment, using Nginx as HTTP server 
 to serve application
 
-## Improvements
-
-On more complex applications, create one project for application. This 
-technical choice allow manage complexity better. The trade-off is 
-poor code re utilization on applications that are related or use the 
-same components.
-
 ## Technical decisions
 
--**TypeScript**: Is a language that allow static typing and early error detection,
+- **TypeScript**: Is a language that allow static typing and early error detection,
 better maintainability, improve developer experience and is a industry standard for
 modern front end frameworks, like Angular. Other alternatives are JavaScript, but it
 lacks of the benefits of TypeScript. The trade-off are higher initial learning
@@ -74,3 +77,11 @@ on traffic spikes or Denial of Service (DDoS) attacks.
 - **English:** The document is aimed at international developers 
 and recruiters and English is the de facto language for communication 
 in the industry.
+
+## Improvements
+
+On more complex applications, create one project for application. This 
+technical choice allow manage complexity better. The trade-off is 
+poor code re utilization on applications that are related or use the 
+same components.
+
