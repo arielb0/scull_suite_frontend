@@ -1,20 +1,7 @@
 import { Routes } from '@angular/router';
-import { RecipeForm } from './features/recipes/recipe-form/recipe-form';
-import { RecipeList } from './features/recipes/recipe-list/recipe-list';
-import { RecipeDetail } from './features/recipes/recipe-detail/recipe-detail';
-import { PageNotFoundComponent } from './core/page-not-found/page-not-found';
 import { RecipeLayout } from './features/recipes/recipe-layout/recipe-layout';
 import { UserLayout } from './features/users/user-layout/user-layout';
-import { UserDetail } from './features/users/user-detail/user-detail';
-import { UserForm } from './features/users/user-form/user-form';
 import { AuthLayout } from './features/auth/auth-layout/auth-layout';
-import { LoginForm } from './features/auth/login-form/login-form';
-import { UserActivate } from './features/users/user-activate/user-activate';
-import { UserReactivate } from './features/users/user-reactivate/user-reactivate';
-import { UsernameForm } from './features/users/username-form/username-form';
-import { PasswordForm } from './features/users/password-form/password-form';
-import { PasswordReset } from './features/users/password-reset/password-reset';
-import { PasswordConfirm } from './features/users/password-confirm/password-confirm';
 
 export const routes: Routes = [
   {
@@ -22,23 +9,23 @@ export const routes: Routes = [
     component: RecipeLayout,
     children:[
       {
-        path: 'create',
-        component: RecipeForm,
+        path: 'create',        
+        loadComponent: () => import('./features/recipes/recipe-form/recipe-form').then(c => c.RecipeForm),
         title: 'Recipe form'
       },
       {
         path: ':id',
-        component: RecipeDetail,
+        loadComponent: () => import('./features/recipes/recipe-detail/recipe-detail').then(c => c.RecipeDetail),
         title: 'Recipes details',
       },
       {
         path: ':id/update',
-        component: RecipeForm,
+        loadComponent: () => import('./features/recipes/recipe-form/recipe-form').then(c => c.RecipeForm),
         title: 'Recipes update',
       },
       {
         path: '',
-        component: RecipeList,
+        loadComponent: () => import('./features/recipes/recipe-list/recipe-list').then(c => c.RecipeList),
         title: 'Recipes list',
       },
     ]
@@ -49,7 +36,7 @@ export const routes: Routes = [
     children: [
       {
         path: 'login',
-        component: LoginForm,
+        loadComponent: () => import('./features/auth/login-form/login-form').then(c => c.LoginForm),
         title: 'Login'
       },
     ]
@@ -60,49 +47,49 @@ export const routes: Routes = [
     children: [
       {
         path: 'create',
-        component: UserForm,
+        loadComponent: () => import('./features/users/user-form/user-form').then(c => c.UserForm),
         title: 'User form'
       },
       {
         path: 'me',
-        component: UserDetail,
+        loadComponent: () => import('./features/users/user-detail/user-detail').then(c => c.UserDetail),
         title: 'User detail'
       },
       {
         path: 'activate/:uid/:token',
-        component: UserActivate,
+        loadComponent: () => import('./features/users/user-activate/user-activate').then(c => c.UserActivate),
         title: 'User activate'
       },
       {
         path: 'resend-activation',
-        component: UserReactivate,
+        loadComponent: () => import('./features/users/user-reactivate/user-reactivate').then(c => c.UserReactivate),
         title: 'User reactivate'
       },
       {
         path: 'set-username',
-        component: UsernameForm,
+        loadComponent: () => import('./features/users/username-form/username-form').then(c => c.UsernameForm),
         title: 'User set username'
       },
       {
         path: 'set-password',
-        component: PasswordForm,
+        loadComponent: () => import('./features/users/password-form/password-form').then(c => c.PasswordForm),
         title: 'User set password'
       },
       {
         path: 'reset-password',
-        component: PasswordReset,
+        loadComponent: () => import('./features/users/password-reset/password-reset').then(c => c.PasswordReset),
         title: 'User reset password'
       },
       {
         path: 'password-confirm/:uid/:token',
-        component: PasswordConfirm,
+        loadComponent: () => import('./features/users/password-confirm/password-confirm').then(c => c.PasswordConfirm),
         title: 'User confirm password'
       },
     ]
   },
   {
     path: '**',
-    component: PageNotFoundComponent,
+    loadComponent: () => import('./core/page-not-found/page-not-found').then(c => c.PageNotFoundComponent),
     title: 'Page not found',
   }
 ];

@@ -2,7 +2,7 @@ import { Component, inject, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { RecipeModel } from '../recipe-model';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { RecipeDelete } from '../recipe-delete/recipe-delete';
 import { AuthService } from '../../auth/auth-service/auth-service';

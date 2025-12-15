@@ -44,3 +44,6 @@ Thumbs.db
 
 # json-server database
 db.json
+
+# Backup files
+*.bak

@@ -1,7 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, switchMap, map, tap} from 'rxjs';
-import { AsyncPipe } from '@angular/common';
+import { switchMap, map } from 'rxjs';
 import { MatListModule } from '@angular/material/list';
 
 import { RecipeModel } from '../recipe-model';

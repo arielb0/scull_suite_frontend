@@ -1,59 +1,78 @@
-# Src
+# Scull Suite Backend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.5.
+## Description
 
-## Development server
+Scull Suite Frontend is a project that show programming skills developing 
+applications that reside on client and consumes an Representational 
+State Transfer (REST) Application Programming Interface (API).
 
-To start a local development server, run:
+## Applications
 
-```bash
-ng serve
-```
+- **Users:** Web application to manage accounts. It uses permissions to decide who access or
+modify account data.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- **Recipes:** Web applications to manage cook recipes. It uses authentication and permissions
+to decide who access or modify recipes entities.
 
-## Code scaffolding
+## Architecture
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- **app.routes.ts:** Routing layer. Associate (mapping) Angular Components with a URL.
 
-```bash
-ng generate component component-name
-```
+- **features/feature/angular-component:**: Presentation layer. Show data to users and listen
+events. Contains logic related to User Interface (UI). Make requests to feature service layer
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- **features/feature/feature-service:** Feature service layer. Contains logic related with
+a specific feature. Orchestrate the usage of data access layer, apply business rules, store
+data needed for several components on presentation layer.
 
-```bash
-ng generate --help
-```
+- **core/api-rest-service**: Data access layer. Encapsulate logic needed to make requests
+and receive responses from backend, using HTTP methods. Serialize and de serialize data. Allow avoid repeating code on feature service layer.
 
-## Building
+## Technology Stack
 
-To build the project run:
+- TypeScript
+- Angular
+- Nginx
+- GNU/Linux (Debian)
+- Visual Studio Code
 
-```bash
-ng build
-```
+## Deployment (Production)
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+The service runs on GNU/Linux environment, using Nginx as HTTP server 
+to serve application
 
-## Running unit tests
+## Improvements
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+On more complex applications, create one project for application. This 
+technical choice allow manage complexity better. The trade-off is 
+poor code re utilization on applications that are related or use the 
+same components.
 
-```bash
-ng test
-```
+## Technical decisions
 
-## Running end-to-end tests
+-**TypeScript**: Is a language that allow static typing and early error detection,
+better maintainability, improve developer experience and is a industry standard for
+modern front end frameworks, like Angular. Other alternatives are JavaScript, but it
+lacks of the benefits of TypeScript. The trade-off are higher initial learning
+curve, requires a build step and type definitions.
 
-For end-to-end (e2e) testing, run:
+- **Angular**: Is a robust web framework, with a great ecosystem, to build 
+SPA on medium or big scale. It has opinionated architecture that 
+make easy maintain code. The trade-off is the steepest learning curve, compared 
+with light frameworks, like React based, Vue or Svelte.
 
-```bash
-ng e2e
-```
+- **Nginx:** Offer high performance, scalability, without consume excessive resources.
+Is a good option to serve static files, caching them and apply SSL certificates. Allow
+future horizontal scaling with minimal configuration. Also has a great documentation. Other
+alternatives are Apache HTTP Server and Caddy/Lighttpd, but are heavier for concurrent connections and has smaller community for production grade Python applications.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Other alternative was serve static content using a Content Delivery Network (CDN), but
+the application has a few files, the project is for a single region and the primary
+goal is simplicity, reduce operational complexity and cost efficiency.
 
-## Additional Resources
+The trade-offs are high latency for geographically distant users and less secure scenario
+on traffic spikes or Denial of Service (DDoS) attacks.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **English:** The document is aimed at international developers 
+and recruiters and English is the de facto language for communication 
+in the industry.

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {FormGroup, FormControl, ReactiveFormsModule} from '@angular/forms'
+import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms'
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
