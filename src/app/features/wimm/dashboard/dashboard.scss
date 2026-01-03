@@ -1,0 +1,6 @@
+.dashboard-grid {
+    display: grid;
+    //grid-template-columns: repeat(auto-fit, minmax(25%, 5fr)); /* Rejilla responsiva automática */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 20%));
+    gap: 15px;
+}

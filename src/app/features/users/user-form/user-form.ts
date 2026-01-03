@@ -35,6 +35,6 @@ export class UserForm {
     }).subscribe({
       complete: () => this._snackBar.open('Registration successful. Check your email inbox for instructions to activate your account', 'Done'),
       error: (err) => this._snackBar.open(JSON.stringify(err), 'Done')
-    })    
+    })
   } 
 }

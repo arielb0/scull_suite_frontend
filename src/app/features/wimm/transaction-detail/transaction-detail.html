@@ -1,0 +1,19 @@
+@if (transaction) {
+  
+  <section class="main-section">
+    <section>
+        <app-transaction-actions [transaction]="transaction"></app-transaction-actions>
+    </section>
+
+    <h1 class="heading">{{ transaction.description }}</h1>
+
+    <p>Timestamp: {{ transaction.timestamp }}</p>
+    <p>Amount: {{ transaction.amount }}</p>
+    <p>Source account: {{ sourceAccount?.name }}</p>
+    <p>Destination account: {{ destinationAccount?.name }}</p>
+    <p>Description: {{ transaction.description }}</p>
+    
+  </section>
+} @else {
+  <app-loading-spinner loadingMessage="Loading transaction data.."></app-loading-spinner>
+}

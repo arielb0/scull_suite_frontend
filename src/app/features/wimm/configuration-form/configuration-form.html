@@ -1,0 +1,34 @@
+<section>
+    <form [formGroup]="configurationForm" (submit)="submitConfiguration()">
+        <mat-form-field>
+            <mat-label>Currency</mat-label>
+            <mat-select [formControl]="configurationForm.controls.currency">
+                <mat-option value="USD">United States Dollar</mat-option>
+                <mat-option value="EUR">Euro</mat-option>
+                <mat-option value="GBP">Pound Sterling</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Currency Display</mat-label>
+            <mat-select [formControl]="configurationForm.controls.currency_display">
+                <mat-option value="code">Code</mat-option>
+                <mat-option value="symbol">Symbol</mat-option>
+                <mat-option value="symbol-narrow">Symbol Narrow</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Locale</mat-label>
+            <mat-select [formControl]="configurationForm.controls.locale">
+                <mat-option value="en-EN">United States</mat-option>
+                <!--
+                <mat-option value="es-ES">Spain</mat-option>
+                <mat-option value="en-GB">United Kingdom</mat-option>
+                -->
+            </mat-select>
+        </mat-form-field>
+
+        <button matButton>Create or update</button>
+    </form>
+</section>

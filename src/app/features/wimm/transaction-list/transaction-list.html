@@ -1,0 +1,13 @@
+<section>
+ 
+  <div class="card-container">
+    
+      @for (transaction of transactions$ | async; track transaction.id) {
+        <app-transaction-card [transaction]="transaction"></app-transaction-card>
+      } @empty {
+        <app-loading-spinner loadingMessage="Loading transactions.."></app-loading-spinner>
+      }
+    
+  </div>
+  
+</section>

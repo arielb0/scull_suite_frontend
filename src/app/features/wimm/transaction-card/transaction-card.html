@@ -1,0 +1,23 @@
+
+<mat-card class="transaction-card" appearance="outlined">
+
+    <mat-card-header>
+        <mat-card-title (click)="goToTransactionDetail(transaction().id ?? 0)">            
+            {{ transaction().description.length < 16 ? transaction().description : `${transaction().description.slice(0, 16)}..` }}
+        </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <p>Timestamp: {{ transaction().timestamp }}</p>
+        <p>Amount: {{ transaction().amount }}</p>
+        <p>Source account: {{ (sourceAccount$ | async)?.name }}</p>
+        <p>Destination account: {{ (destinationAccount$ | async)?.name }}</p>
+        <p>Description: {{ transaction().description }}</p>
+    </mat-card-content>
+  
+    <section>
+        <app-transaction-actions [transaction]="transaction()"></app-transaction-actions>
+    </section>
+  
+</mat-card>
+

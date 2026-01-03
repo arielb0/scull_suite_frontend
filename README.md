@@ -85,3 +85,10 @@ technical choice allow manage complexity better. The trade-off is
 poor code re utilization on applications that are related or use the 
 same components.
 
+
+# To order
+
+WIMM
+
+- Working with related data
+- Working with datetime

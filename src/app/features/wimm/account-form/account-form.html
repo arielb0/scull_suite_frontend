@@ -1,0 +1,29 @@
+<section>
+    <form [formGroup]="accountForm" (submit)="submitAccount()">
+        <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput [formControl]="accountForm.controls.name" required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Goal Description</mat-label>
+            <textarea matInput [formControl]="accountForm.controls.goal_description"></textarea>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Goal Amount</mat-label>
+            <input type="number" matInput [formControl]="accountForm.controls.goal_amount" default="0">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Budget Percentage</mat-label>
+            <input matInput [formControl]="accountForm.controls.budget_percentage" type="number" default="0">
+        </mat-form-field>
+
+        <mat-checkbox [formControl]="accountForm.controls.include_on_summary_section">Include on Summary Section</mat-checkbox>
+
+        <mat-checkbox [formControl]="accountForm.controls.include_on_total_amount">Include on Total Amount</mat-checkbox>
+
+        <button matButton>Create or update</button>
+    </form>
+</section>

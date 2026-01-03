@@ -1,0 +1,21 @@
+
+<mat-card class="account-card" appearance="outlined">
+
+    <mat-card-header>
+        <mat-card-title (click)="goToAccountDetail(account().id ?? 0)">{{ account().name }}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+        <p>Goal description: {{ account().goal_description }}</p>
+        <p>Goal amount: {{ account().goal_amount }}</p>
+        <p>Budget: {{ account().budget_percentage }} %</p>
+        <p>Include on summary section: {{ account().include_on_summary_section }}</p>
+        <p>Include on total amount: {{ account().include_on_total_amount }}</p>
+    </mat-card-content>
+  
+    <section>
+        <app-account-actions [account]="account()"></app-account-actions>
+    </section>
+  
+</mat-card>
+

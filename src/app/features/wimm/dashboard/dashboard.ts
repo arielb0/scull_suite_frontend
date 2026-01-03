@@ -1,0 +1,47 @@
+import { Component, inject } from '@angular/core';
+import { DashboardService } from '../dashboard-service/dashboard-service';
+import { DashboardModel } from '../dashboard-model';
+import { pipe, tap } from 'rxjs';
+import { ConfigurationService } from '../configuration-service/configuration-service';
+import { ConfigurationModel } from '../configuration-model';
+import { CurrencyPipe } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+import { RouterLink } from "@angular/router";
+import { LoadingSpinner } from '../../../core/loading-spinner/loading-spinner';
+import { MatFabButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MetricCard } from '../metric-card/metric-card';
+
+@Component({
+  selector: 'app-dashboard',
+  imports: [CurrencyPipe, MatCardModule, MatListModule, RouterLink, 
+    LoadingSpinner, MatFabButton, MatIcon, MetricCard],
+  templateUrl: './dashboard.html',
+  styleUrl: './dashboard.scss',
+})
+export class Dashboard {
+
+  dashboardService = inject(DashboardService)
+  dashboard: DashboardModel | undefined = undefined
+
+  configurationService: ConfigurationService = inject(ConfigurationService)
+  configuration: ConfigurationModel | null = null 
+  
+  constructor() {
+    this.configurationService.configuration$.subscribe({
+      next: (response) => this.configuration = response as ConfigurationModel
+    })
+
+    this.dashboardService.read().pipe(
+      tap((response) => {
+        if (response) {
+          this.dashboard = response
+        }
+      })
+    ).subscribe({
+      error: (err) => console.log(err)
+    })
+  }
+
+}

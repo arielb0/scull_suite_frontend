@@ -1,0 +1,17 @@
+@if (account) {
+  
+  <section class="main-section">
+    <section>
+        <app-account-actions [account]="account"></app-account-actions>
+    </section>
+
+    <h1 class="heading">{{ account.name }}</h1>
+
+    <p>Budget: {{ account.budget_percentage }} %</p>
+    <p>Objective: {{ account.goal_description }} </p>
+    <p>Include on Summary Section: {{ account.include_on_summary_section }}</p>
+    <p>Include on Total Amount: {{ account.include_on_total_amount }}</p>
+  </section>
+} @else {
+  <app-loading-spinner loadingMessage="Loading account data.."></app-loading-spinner>
+}

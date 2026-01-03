@@ -1,0 +1,13 @@
+<section>
+ 
+  <div class="card-container">
+    
+      @for (account of accounts$ | async; track account.id) {
+        <app-account-card [account]="account"></app-account-card>
+      } @empty {
+        <app-loading-spinner loadingMessage="Loading accounts.."></app-loading-spinner>
+      }
+    
+  </div>
+  
+</section>
