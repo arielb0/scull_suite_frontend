@@ -9,10 +9,13 @@ import { AccountCard } from '../account-card/account-card';
 import { AccountService } from '../account-service/account-service';
 import { AccountModel } from '../account-model';
 import { LoadingSpinner } from '../../../core/loading-spinner/loading-spinner';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButton } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-list',
-  imports: [AccountCard, AsyncPipe, LoadingSpinner],
+  imports: [AccountCard, AsyncPipe, LoadingSpinner, MatIconModule, MatButton, RouterLink],
   templateUrl: './account-list.html',
   styleUrl: './account-list.scss'
 })

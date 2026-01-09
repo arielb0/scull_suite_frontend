@@ -14,7 +14,6 @@ import { AccountService } from '../account-service/account-service';
 import { AccountModel } from '../account-model';
 import { DatetimeService } from '../../../core/datetime-service/datetime-service';
 
-
 @Component({
   selector: 'app-transaction-form',
   imports: [ReactiveFormsModule, MatInputModule, MatSelectModule, MatButtonModule, AsyncPipe],

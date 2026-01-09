@@ -1,7 +1,13 @@
-@if (configuration) {
+<section>
+    <a matButton routerLink="/wimm/configuration/update">
+        <mat-icon fontIcon="edit"></mat-icon>
+        Update
+    </a>
+  @if (configuration) {
     <p>ID: {{ configuration.id }}</p>
     <p>User: {{ configuration.user }}</p>
     <p>Currency: {{ configuration.currency }}</p>
     <p>Currency Display: {{ configuration.currency_display }} </p>
     <p>Locale: {{ configuration.locale }}</p>
 }
+</section>

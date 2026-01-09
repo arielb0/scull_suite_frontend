@@ -7,16 +7,16 @@ import { ConfigurationModel } from '../configuration-model';
 import { CurrencyPipe } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
-import { RouterLink } from "@angular/router";
 import { LoadingSpinner } from '../../../core/loading-spinner/loading-spinner';
-import { MatFabButton } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
 import { MetricCard } from '../metric-card/metric-card';
+import { RouterLink } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { AccountChart } from '../account-chart/account-chart';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CurrencyPipe, MatCardModule, MatListModule, RouterLink, 
-    LoadingSpinner, MatFabButton, MatIcon, MetricCard],
+  imports: [CurrencyPipe, MatCardModule, MatListModule,
+    LoadingSpinner, MetricCard, RouterLink, MatButtonModule, AccountChart],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })

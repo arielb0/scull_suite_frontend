@@ -1,0 +1,11 @@
+<form [formGroup]="budgetForm" (submit)="applyBudget()">
+    <mat-form-field>
+        <mat-label>Source Account</mat-label>
+        <mat-select [formControl]="budgetForm.controls.sourceAccount">
+            @for (account of accounts; track account.id) {
+                <mat-option [value]="account.id">{{ account.name }}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+    <button matButton>Apply budget</button>
+</form>

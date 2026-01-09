@@ -11,10 +11,13 @@ import { TransactionModel } from '../transaction-model';
 import { LoadingSpinner } from '../../../core/loading-spinner/loading-spinner';
 import { AccountService } from '../account-service/account-service';
 import { AccountModel } from '../account-model';
+import { RouterLink } from "@angular/router";
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-recipe-list',
-  imports: [TransactionCard, AsyncPipe, LoadingSpinner],
+  imports: [TransactionCard, AsyncPipe, LoadingSpinner, RouterLink, MatIconModule, MatButtonModule],
   templateUrl: './transaction-list.html',
   styleUrl: './transaction-list.scss'
 })

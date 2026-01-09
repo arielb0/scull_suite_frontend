@@ -1,5 +1,13 @@
 <section>
- 
+ <h1>Transactions</h1>
+
+ <a matButton routerLink="/wimm/transactions/create">
+    <mat-icon fontIcon="add"></mat-icon>
+    Add
+ </a>
+
+ <a matButton routerLink="/wimm/budget/apply">Apply Budget</a>
+
   <div class="card-container">
     
       @for (transaction of transactions$ | async; track transaction.id) {

@@ -1,5 +1,9 @@
 <section>
- 
+  <h1>Accounts</h1>
+  <a matButton routerLink="/wimm/accounts/create">
+    <mat-icon fontIcon="add"></mat-icon>
+    Add
+  </a>
   <div class="card-container">
     
       @for (account of accounts$ | async; track account.id) {

@@ -1,17 +1,31 @@
 <section>
-
     @if (dashboard) {
-        <div class="dashboard-grid">
-            <app-metric-card metricName="Available Amount" [metricValue]="dashboard.total_amount | currency: configuration?.currency : configuration?.currency_display : '1.2-2' : configuration?.locale"></app-metric-card>
-
-            @for (account of dashboard.accounts_amounts; track account.id) {
-                <app-metric-card [metricName]="account.name" [metricValue]="account.amount | currency: configuration?.currency : configuration?.currency_display : '1.2-2' : configuration?.locale"></app-metric-card>
-
-                @if (account.goal_amount > 0) {
-                    <app-metric-card [metricName]="`${account.name} Goal Status`" [metricValue]="`${account.amount * 100 / account.goal_amount}%`"></app-metric-card>
-                }
+        @if (dashboard.total_amount == 0) {
+            <h1>No data available</h1>
+            <p>
+                You do not have data to process and get relevant information.
+            </p>
+            @if (dashboard.accounts.length < 1) {
+                <a matButton routerLink="/wimm/accounts/create">Add account</a>
+            } @else {
+                <a matButton routerLink="/wimm/transactions/create">Add transaction</a>
             }
-        </div>
+        } @else {
+            <div class="dashboard-grid">
+                <app-metric-card metricName="Available Amount" [metricValue]="dashboard.total_amount | currency: configuration?.currency : configuration?.currency_display : '1.2-2' : configuration?.locale"></app-metric-card>
+
+                @for (account of dashboard.accounts; track account.id) {
+                    <app-metric-card [metricName]="account.name" [metricValue]="account.amount | currency: configuration?.currency : configuration?.currency_display : '1.2-2' : configuration?.locale"></app-metric-card>
+
+                    @if (account.goal_amount > 0) {
+                        <app-metric-card [metricName]="`${account.name} Goal Status`" [metricValue]="`${account.amount * 100 / account.goal_amount}%`"></app-metric-card>
+                    }
+                }
+            </div>
+            <div>
+                <app-account-chart></app-account-chart>
+            </div>
+        }        
     } @else {
         <app-loading-spinner loadingMessage="Loading recipe data.."></app-loading-spinner>
     }
