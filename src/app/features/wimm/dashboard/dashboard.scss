@@ -1,6 +1,39 @@
-.dashboard-grid {
+.metric-card-grid {
     display: grid;
-    //grid-template-columns: repeat(auto-fit, minmax(25%, 5fr)); /* Rejilla responsiva automática */
-    grid-template-columns: repeat(auto-fit, minmax(200px, 20%));
     gap: 15px;
+    margin-bottom: 15px;
+}
+
+@media screen and (max-width: 767px) {
+    .metric-card-grid {
+        grid-template-columns: repeat(auto-fit, minmax(90px, 140px));
+    }
+}
+
+@media screen and (min-width: 768px ) {
+    .metric-card-grid {
+        grid-template-columns: repeat(auto-fit, minmax(90px, 160px));
+    }
+}
+
+.summary-chart-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 70vw));
+    gap: 15px;
+}
+
+.summary-chart-container {
+    background-color: light-dark(#f4f3f6, #1a1b1f);
+}
+
+@media screen and (max-width: 767px) {
+    .summary-chart-grid {
+        grid-template-columns: repeat(auto-fit, minmax(20vw, 76vw));
+    }
+}
+
+@media screen and (min-width: 768px ) {
+    .summary-chart-grid {
+        grid-template-columns: repeat(auto-fit, minmax(90px, 70vw));
+    }
 }

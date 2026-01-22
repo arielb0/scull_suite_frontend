@@ -1,3 +1,30 @@
 .spacer {
     flex: 1 1 auto;
 }
+
+@media screen and (max-width: 767px ) {
+    mat-sidenav {
+        width: 70px;
+    }
+}
+
+@media screen and (min-width: 768px ) {
+    mat-sidenav {
+        width: 200px;
+    }
+}
+
+mat-toolbar {
+    position: fixed;
+    z-index: 2;
+}
+
+mat-sidenav-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

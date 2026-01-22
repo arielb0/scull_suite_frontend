@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { DashboardService } from '../dashboard-service/dashboard-service';
 import { DashboardModel } from '../dashboard-model';
-import { pipe, tap } from 'rxjs';
+import { tap } from 'rxjs';
 import { ConfigurationService } from '../configuration-service/configuration-service';
 import { ConfigurationModel } from '../configuration-model';
 import { CurrencyPipe } from '@angular/common';
@@ -11,12 +11,13 @@ import { LoadingSpinner } from '../../../core/loading-spinner/loading-spinner';
 import { MetricCard } from '../metric-card/metric-card';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
-import { AccountChart } from '../account-chart/account-chart';
+import { SummaryChart } from '../summary-chart/summary-chart';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-dashboard',
   imports: [CurrencyPipe, MatCardModule, MatListModule,
-    LoadingSpinner, MetricCard, RouterLink, MatButtonModule, AccountChart],
+    LoadingSpinner, MetricCard, RouterLink, MatButtonModule, SummaryChart, MatIcon],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })

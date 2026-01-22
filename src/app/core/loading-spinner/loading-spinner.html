@@ -1,4 +1,8 @@
 <div class="spinner-container">
-    <mat-spinner></mat-spinner>
-    <p>{{ loadingMessage() }}</p>
+    @if (showNoDataMessage) {
+        <p>No data available.</p>
+    } @else {
+        <mat-spinner></mat-spinner>
+        <p>{{ loadingMessage() }}</p>
+    }
 </div>

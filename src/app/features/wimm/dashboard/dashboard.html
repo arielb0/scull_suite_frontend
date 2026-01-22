@@ -11,9 +11,9 @@
                 <a matButton routerLink="/wimm/transactions/create">Add transaction</a>
             }
         } @else {
-            <div class="dashboard-grid">
+            <div class="metric-card-grid">
                 <app-metric-card metricName="Available Amount" [metricValue]="dashboard.total_amount | currency: configuration?.currency : configuration?.currency_display : '1.2-2' : configuration?.locale"></app-metric-card>
-
+                
                 @for (account of dashboard.accounts; track account.id) {
                     <app-metric-card [metricName]="account.name" [metricValue]="account.amount | currency: configuration?.currency : configuration?.currency_display : '1.2-2' : configuration?.locale"></app-metric-card>
 
@@ -21,9 +21,34 @@
                         <app-metric-card [metricName]="`${account.name} Goal Status`" [metricValue]="`${account.amount * 100 / account.goal_amount}%`"></app-metric-card>
                     }
                 }
+
+                <app-metric-card metricName="Budget Usage" [metricValue]="`${dashboard.total_budget}%`"></app-metric-card>
             </div>
+
             <div>
-                <app-account-chart></app-account-chart>
+                <mat-nav-list>
+                    @for (transaction of dashboard.last_transactions; track transaction.id) {                        
+                        <a [routerLink]="['/wimm/transactions', transaction.id]" mat-list-item>
+                            <mat-icon matListItemIcon fontIcon="home"></mat-icon>
+                            <span matListItemTitle>
+                                {{ transaction.amount | currency: configuration?.currency : configuration?.currency_display : '1.2-2' : configuration?.locale }}
+                            </span>
+                            <span matListItemLine>
+                                {{ transaction.description }}
+                            </span>
+                        </a>
+                    } @empty {
+                        <p>No data available</p>
+                    }
+                </mat-nav-list>
+            </div>
+            
+            <div class="summary-chart-grid">
+                @for (account of dashboard.accounts; track account.id) {
+                    <div class="summary-chart-container">
+                        <app-summary-chart [accountName]="`${account.name} (${account.budget_percentage}%)`" [accountId]="account.id"></app-summary-chart>
+                    </div>
+                }
             </div>
         }        
     } @else {

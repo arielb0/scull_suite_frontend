@@ -1,4 +1,5 @@
 import { AccountSummaryModel } from "./account-summary-model"
+import { TransactionModel } from "./transaction-model"
 
 export interface DashboardModel {
     total_amount: number,
@@ -6,4 +7,5 @@ export interface DashboardModel {
     accounts: [
         AccountSummaryModel
     ]
+    last_transactions: [TransactionModel]
 }

@@ -9,4 +9,10 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 })
 export class LoadingSpinner {
   loadingMessage = input.required<string>()
+  showNoDataMessage = false
+
+  constructor() {
+    setInterval(() => this.showNoDataMessage = true, 6000)
+  }
+
 }

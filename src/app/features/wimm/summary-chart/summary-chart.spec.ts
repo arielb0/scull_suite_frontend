@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AccountChart } from './account-chart';
+import { SummaryChart } from './summary-chart';
 
-describe('AccountChart', () => {
-  let component: AccountChart;
-  let fixture: ComponentFixture<AccountChart>;
+describe('SummaryChart', () => {
+  let component: SummaryChart;
+  let fixture: ComponentFixture<SummaryChart>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AccountChart]
+      imports: [SummaryChart]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AccountChart);
+    fixture = TestBed.createComponent(SummaryChart);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -25,7 +25,7 @@ export class WimmLayout {
   sidebarOpened: boolean;
 
   constructor() {
-    this.sidebarOpened = false
+    this.sidebarOpened = true
   }
 
   logoutAction() {

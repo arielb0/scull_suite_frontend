@@ -9,7 +9,7 @@ import { retry, timeout } from 'rxjs';
 export class ApiRestService {
 
   private http = inject(HttpClient)
-  private timeoutValue: number = 10000
+  private timeoutValue: number = 5000
   private retryConfig: RetryConfig = {count: 2, delay: 2000}
 
   create<typeInput, typeOutput>(url: string, data: typeInput): Observable<typeOutput> {
