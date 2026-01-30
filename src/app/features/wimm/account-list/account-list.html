@@ -1,13 +1,17 @@
 <section>
   <h1>Accounts</h1>
-  <a matButton routerLink="/wimm/accounts/create">
-    <mat-icon fontIcon="add"></mat-icon>
-    Add
-  </a>
-  <div class="card-container">
+
+  <div>
+    <a class="action-button" matButton="filled" routerLink="/wimm/accounts/create">
+      <mat-icon fontIcon="add"></mat-icon>
+      Add
+    </a>
+  </div>
+  
+  <div class="account-card-grid">
     
       @for (account of accounts$ | async; track account.id) {
-        <app-account-card [account]="account"></app-account-card>
+        <app-account-card [account]="account" [amount]="account.goal_amount | currency: configuration?.currency : configuration?.currency_display : '1.2-2' : configuration?.locale"></app-account-card>
       } @empty {
         <app-loading-spinner loadingMessage="Loading accounts.."></app-loading-spinner>
       }

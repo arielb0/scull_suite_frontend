@@ -4,4 +4,5 @@ export interface AccountSummaryModel {
     goal_amount: number,
     budget_percentage: number
     amount: number,
+    color: number
 }

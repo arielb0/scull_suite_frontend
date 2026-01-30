@@ -7,18 +7,26 @@ import { MatDialog } from '@angular/material/dialog';
 import { AccountDelete } from '../account-delete/account-delete';
 import { AuthService } from '../../auth/auth-service/auth-service';
 import { AccountActions } from '../account-actions/account-actions';
+import { MatListModule } from "@angular/material/list";
+import { MatIcon } from '@angular/material/icon';
+import { AccountService } from '../account-service/account-service';
+import { CurrencyPipe } from '@angular/common';
+import { ConfigurationModel } from '../configuration-model';
 
 @Component({
   selector: 'app-account-card',
-  imports: [MatCardModule, MatButtonModule, AccountActions],
+  imports: [MatCardModule, MatButtonModule, AccountActions, MatListModule, MatIcon],
   templateUrl: './account-card.html',
   styleUrl: './account-card.scss'
 })
 export class AccountCard {
   dialog = inject(MatDialog)  
   account = input.required<AccountModel>()
+  amount = input.required<string | null>()
   authService = inject(AuthService)
   router = inject(Router)
+  accountService = inject(AccountService)
+  configuration: ConfigurationModel | null = null
 
   openDialog(id: number) {
     const dialogRef = this.dialog.open(AccountDelete, {data: {id: id}})

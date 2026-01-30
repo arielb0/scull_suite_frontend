@@ -25,6 +25,19 @@
             <mat-checkbox [formControl]="accountForm.controls.include_on_total_amount">Include on Total Amount</mat-checkbox>
         </div>
 
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Color</mat-label>
+            <mat-select [formControl]="accountForm.controls.color" required>
+                <mat-option [value]=0>Blue</mat-option>
+                <mat-option [value]=1>Red</mat-option>
+                <mat-option [value]=2>Green</mat-option>
+                <mat-option [value]=3>Dark Orange</mat-option>
+                <mat-option [value]=4>Violet</mat-option>
+                <mat-option [value]=5>Light Orange</mat-option>
+                <mat-option [value]=6>Light / Dark</mat-option>
+            </mat-select>
+        </mat-form-field>
+
         <button matButton>Create or update</button>
     </form>
 </section>

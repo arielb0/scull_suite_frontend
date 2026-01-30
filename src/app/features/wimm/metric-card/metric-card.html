@@ -1,4 +1,4 @@
-<mat-card class="metric-card">
+<mat-card class="metric-card" [style.background-color]="accountService.getBackgroundColor(color())">
     <mat-card-header>
         <h2 class="metric-name">{{ metricName() }}</h2>
     </mat-card-header>

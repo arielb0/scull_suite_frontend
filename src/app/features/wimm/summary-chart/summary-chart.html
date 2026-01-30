@@ -3,5 +3,9 @@
         baseChart
         [data]="datasets"
         [type]="chartType"
+        [options]="{
+            borderColor: accountService.getBackgroundColor(color()),
+            backgroundColor: accountService.getBackgroundColor(color()),
+            }"
     ></canvas>
 </div>

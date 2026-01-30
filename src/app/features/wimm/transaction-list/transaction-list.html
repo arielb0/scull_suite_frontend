@@ -1,21 +1,34 @@
 <section>
  <h1>Transactions</h1>
 
- <a matButton routerLink="/wimm/transactions/create">
+ <div class="action-container">
+  <a class="action-button" matButton="filled" routerLink="/wimm/transactions/create">
     <mat-icon fontIcon="add"></mat-icon>
     Add
- </a>
+  </a>
 
- <a matButton routerLink="/wimm/budget/apply">Apply Budget</a>
+  <a class="action-button" matButton="tonal" routerLink="/wimm/budget/apply">
+    <mat-icon fontIcon="donut_large"></mat-icon>
+    Apply Budget
+  </a>
+ </div>
 
-  <div class="card-container">
-    
-      @for (transaction of transactions$ | async; track transaction.id) {
-        <app-transaction-card [transaction]="transaction"></app-transaction-card>
-      } @empty {
-        <app-loading-spinner loadingMessage="Loading transactions.."></app-loading-spinner>
-      }
-    
-  </div>
-  
+ <div>
+  <mat-form-field appearance="outline" container-height="-2">
+    <mat-label>Search</mat-label>
+    <input matInput type="text">
+    <mat-icon matSuffix fontIcon="search"></mat-icon>
+  </mat-form-field>
+ </div>
+ 
+ <div>
+  <mat-accordion>
+    @for (transaction of transactions$ | async; track transaction.id) {
+      <app-transaction-expansion [transaction]="transaction" [amount]="transaction.amount | currency: configuration?.currency : configuration?.currency_display : '1.2-2' : configuration?.locale"></app-transaction-expansion>
+    } @empty {
+      <app-loading-spinner loadingMessage="Loading transactions"></app-loading-spinner>
+    }
+  </mat-accordion>
+ </div> 
+
 </section>

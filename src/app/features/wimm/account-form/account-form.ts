@@ -29,7 +29,8 @@ export class AccountForm {
     goal_amount: new FormControl<number>(0),
     budget_percentage: new FormControl<number>(0),
     include_on_summary_section: new FormControl<boolean>(false),
-    include_on_total_amount: new FormControl<boolean>(false)
+    include_on_total_amount: new FormControl<boolean>(false),
+    color: new FormControl<number>(0)
   })
 
   constructor() {
@@ -46,6 +47,7 @@ export class AccountForm {
                   this.accountForm.controls.budget_percentage.setValue(account.budget_percentage)
                   this.accountForm.controls.include_on_summary_section.setValue(account.include_on_summary_section)
                   this.accountForm.controls.include_on_total_amount.setValue(account.include_on_total_amount)
+                  this.accountForm.controls.color.setValue(account.color)
               }
             })
           )
@@ -78,6 +80,7 @@ export class AccountForm {
         budget_percentage: this.accountForm.value.budget_percentage ?? 0,
         include_on_summary_section: this.accountForm.value.include_on_summary_section ?? false,
         include_on_total_amount: this.accountForm.value.include_on_total_amount ?? false,
+        color: this.accountForm.value.color ?? 0
       }).subscribe({
         complete: () => this.completeCallback(),
         error: (err: HttpErrorResponse) => this.errorCallback(err)
@@ -90,6 +93,7 @@ export class AccountForm {
         budget_percentage: this.accountForm.value.budget_percentage ?? 0,
         include_on_summary_section: this.accountForm.value.include_on_summary_section ?? false,
         include_on_total_amount: this.accountForm.value.include_on_total_amount ?? false,
+        color: this.accountForm.value.color ?? 0
       }).subscribe({
         complete: () => this.completeCallback(),
         error: (err: HttpErrorResponse) => this.errorCallback(err)

@@ -12,12 +12,11 @@ import { MetricCard } from '../metric-card/metric-card';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { SummaryChart } from '../summary-chart/summary-chart';
-import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-dashboard',
   imports: [CurrencyPipe, MatCardModule, MatListModule,
-    LoadingSpinner, MetricCard, RouterLink, MatButtonModule, SummaryChart, MatIcon],
+    LoadingSpinner, MetricCard, RouterLink, MatButtonModule, SummaryChart],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.scss',
 })

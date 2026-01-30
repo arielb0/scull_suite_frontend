@@ -2,6 +2,7 @@ import { Component, inject, input } from '@angular/core';
 import { ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective } from "ng2-charts";
 import { SummaryService } from '../summary-service/summary-service';
+import { AccountService } from '../account-service/account-service';
 
 @Component({
   selector: 'app-summary-chart',
@@ -12,6 +13,7 @@ import { SummaryService } from '../summary-service/summary-service';
 export class SummaryChart {
   accountName = input.required<string>()
   accountId = input.required<number>()
+  color = input.required<number>()
   summaryService: SummaryService = inject(SummaryService)
   chartType: ChartType = 'line'
   datasets: ChartConfiguration['data'] = {
@@ -22,6 +24,7 @@ export class SummaryChart {
     ],
     labels: []
   }
+  accountService = inject(AccountService)
 
   ngOnInit() {
 
@@ -44,7 +47,7 @@ export class SummaryChart {
           },    
           ],
           labels: labels
-        }
+        }        
       }
     })
   }

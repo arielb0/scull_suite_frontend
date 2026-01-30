@@ -11,6 +11,7 @@
     <p>Objective: {{ account.goal_description }} </p>
     <p>Include on Summary Section: {{ account.include_on_summary_section }}</p>
     <p>Include on Total Amount: {{ account.include_on_total_amount }}</p>
+    <p>Color: {{ account.color }}</p>
   </section>
 } @else {
   <app-loading-spinner loadingMessage="Loading account data.."></app-loading-spinner>

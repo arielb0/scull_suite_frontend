@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, tap, map, switchMap } from 'rxjs';
 import { AccountModel } from '../account-model';
 import { ApiRestService } from '../../../core/api-rest-service/api-rest-service';
 import { environment } from '../../../../environments/environment';
+import { ConfigurationService } from '../configuration-service/configuration-service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,9 @@ export class AccountService {
 
   private accountsSubject = new BehaviorSubject<AccountModel[]>([])
   accounts$ = this.accountsSubject.asObservable()
-  
+
+  private configuration = inject(ConfigurationService)
+    
   create(item: AccountModel): Observable<AccountModel> {
    return this.apiRestService.create<AccountModel, AccountModel>(AccountService.url, item).pipe(
     tap((response) => {
@@ -72,4 +75,22 @@ export class AccountService {
     ) as Observable<AccountModel[]>
   }
 
+  getBackgroundColor(colorId: number): string {
+    switch (colorId) {
+      case 0:
+        return '#36a2eb'
+      case 1:
+        return '#ff6384'
+      case 2:
+        return '#4bc0c0'
+      case 3:
+        return '#ff9f40'
+      case 4:
+        return '#9966ff'
+      case 5:
+        return '#ffcd56'
+      default:
+        return 'light-dark( #f4f3f6, #1a1b1f)'
+    }
+  }
 }

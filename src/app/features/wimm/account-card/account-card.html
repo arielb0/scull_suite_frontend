@@ -1,21 +1,43 @@
-
-<mat-card class="account-card" appearance="outlined">
+<mat-card class="account-card" appearance="outlined" [style.background-color]="accountService.getBackgroundColor(account().color)">
 
     <mat-card-header>
         <mat-card-title (click)="goToAccountDetail(account().id ?? 0)">{{ account().name }}</mat-card-title>
     </mat-card-header>
 
     <mat-card-content>
-        <p>Goal description: {{ account().goal_description }}</p>
-        <p>Goal amount: {{ account().goal_amount }}</p>
-        <p>Budget: {{ account().budget_percentage }} %</p>
-        <p>Include on summary section: {{ account().include_on_summary_section }}</p>
-        <p>Include on total amount: {{ account().include_on_total_amount }}</p>
+        <mat-list>
+            @if (account().goal_amount > 0) {
+                <mat-list-item>
+                    <mat-icon matListItemIcon fontIcon="flag"></mat-icon>
+                    <span matListItemLine>{{ amount() }}</span>
+                </mat-list-item>
+            }
+            @if (account().budget_percentage > 0) {
+                <mat-list-item>
+                    <mat-icon matListItemIcon fontIcon="donut_large"></mat-icon>
+                    <span matListItemLine>{{ account().budget_percentage }} %</span>
+                </mat-list-item>
+            }            
+            @if (account().include_on_summary_section) {
+                <mat-list-item>
+                    <mat-icon matListItemIcon fontIcon="check"></mat-icon>
+                    <span matListItemLine>Summary Section</span>
+                </mat-list-item>
+            }
+
+            @if (account().include_on_total_amount) {
+                <mat-list-item>
+                    <mat-icon matListItemIcon fontIcon="check"></mat-icon>
+                    <span matListItemLine>Total Amount</span>
+                </mat-list-item>
+            }            
+            
+        </mat-list>
+        <p>{{ account().goal_description }}</p>
     </mat-card-content>
   
-    <section>
+    <mat-card-actions>
         <app-account-actions [account]="account()"></app-account-actions>
-    </section>
+    </mat-card-actions>
   
 </mat-card>
-
