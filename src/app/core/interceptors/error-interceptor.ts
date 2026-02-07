@@ -19,6 +19,13 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router)
   const loginRoute = ['/auth/login']
 
+  function redirectTo() {
+    if (router.url !== '/auth/login') {
+      storageService.create('redirect_to', router.url)
+    }
+    router.navigate(loginRoute)
+  }
+
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
       // Manage global errors (500, 401, 403)
@@ -37,12 +44,17 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
                 storageUtilService.deleteStorageItems()
               }
 
+              if (router.url !== '/auth/login') {
+                storageService.create('redirect_to', router.url)
+              }
+              
               router.navigate(loginRoute)
+              
             },
           })                  
         } else {
           storageUtilService.deleteStorageItems()
-          router.navigate(loginRoute)
+          redirectTo()
         }
       }
       return throwError(() => error)

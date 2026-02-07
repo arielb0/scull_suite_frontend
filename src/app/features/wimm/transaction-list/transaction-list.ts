@@ -5,6 +5,7 @@ import { CurrencyPipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatAccordion } from '@angular/material/expansion'
+import { tap } from 'rxjs';
 
 import { TransactionService } from '../transaction-service/transaction-service';
 import { TransactionModel } from '../transaction-model';
@@ -44,8 +45,14 @@ export class TransactionList {
 
   constructor() {
 
-    this.configurationService.configuration$.subscribe({
-      next: (response) => this.configuration = response as ConfigurationModel
+    this.configurationService.read().pipe(
+      tap((response) => {
+        if (response) {
+          this.configuration = response
+        }
+      })
+    ).subscribe({
+      error: (err) => console.log(err)
     })
 
     this.transactionService.list().subscribe({

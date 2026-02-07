@@ -3,7 +3,6 @@ import { RecipeLayout } from './features/recipes/recipe-layout/recipe-layout';
 import { UserLayout } from './features/users/user-layout/user-layout';
 import { AuthLayout } from './features/auth/auth-layout/auth-layout';
 import { WimmLayout } from './features/wimm/wimm-layout/wimm-layout';
-import { C } from '@angular/cdk/keycodes';
 
 export const routes: Routes = [
   {

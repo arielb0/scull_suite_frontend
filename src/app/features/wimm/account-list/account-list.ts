@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { tap } from 'rxjs';
 
 import { AccountCard } from '../account-card/account-card';
 import { AccountService } from '../account-service/account-service';
@@ -32,8 +33,14 @@ export class AccountList {
   _snackBar: MatSnackBar = inject(MatSnackBar)
 
   constructor() {
-    this.configurationService.configuration$.subscribe({
-      next: (response) => this.configuration = response as ConfigurationModel
+    this.configurationService.read().pipe(
+      tap((response) => {
+        if (response) {
+          this.configuration = response
+        }
+      })
+    ).subscribe({
+      error: (err) => console.log(err)
     })
     
     this.accountService.list().subscribe({

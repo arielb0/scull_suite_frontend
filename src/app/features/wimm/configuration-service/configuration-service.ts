@@ -24,12 +24,6 @@ export class ConfigurationService {
     )
   }
 
-  constructor() {
-    this.read().subscribe({
-      error: (err) => console.log(`Error loading configuration: ${err}`)
-    })
-  }
-
   update(item: ConfigurationModel): Observable<ConfigurationModel> {
       return this.apiRestService.update<ConfigurationModel, ConfigurationModel>(ConfigurationService.url, item).pipe(
         tap(response => {

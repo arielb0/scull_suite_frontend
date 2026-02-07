@@ -26,11 +26,18 @@ export class Dashboard {
   dashboard: DashboardModel | undefined = undefined
 
   configurationService: ConfigurationService = inject(ConfigurationService)
-  configuration: ConfigurationModel | null = null 
+  configuration: ConfigurationModel | null = null
   
   constructor() {
-    this.configurationService.configuration$.subscribe({
-      next: (response) => this.configuration = response as ConfigurationModel
+    
+    this.configurationService.read().pipe(
+      tap((response) => {
+        if (response) {
+          this.configuration = response
+        }
+      })
+    ).subscribe({
+      error: (err) => console.log(err)
     })
 
     this.dashboardService.read().pipe(

@@ -10,7 +10,7 @@ export class ApiRestService {
 
   private http = inject(HttpClient)
   private timeoutValue: number = 5000
-  private retryConfig: RetryConfig = {count: 2, delay: 2000}
+  private retryConfig: RetryConfig = {count: 1, delay: 2000}
 
   create<typeInput, typeOutput>(url: string, data: typeInput): Observable<typeOutput> {
     return this.http.post(url, data).pipe(timeout(this.timeoutValue), retry(this.retryConfig)) as Observable<typeOutput>
