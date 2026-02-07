@@ -7,17 +7,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { TransactionDelete } from '../transaction-delete/transaction-delete';
 import { AuthService } from '../../auth/auth-service/auth-service';
 import { TransactionActions } from '../transaction-actions/transaction-actions';
-import { AccountModel } from '../account-model';
-import { Observable } from 'rxjs';
 import { AccountService } from '../account-service/account-service';
-import { AsyncPipe } from '@angular/common';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-transaction-expansion',
-  imports: [MatCardModule, MatButtonModule, MatExpansionModule, TransactionActions, AsyncPipe, MatIconModule, MatListModule],
+  imports: [MatCardModule, MatButtonModule, MatExpansionModule, TransactionActions, MatIconModule, MatListModule],
   templateUrl: './transaction-expansion.html',
   styleUrl: './transaction-expansion.scss'
 })
@@ -29,13 +26,6 @@ export class TransactionExpansion {
   router = inject(Router)
   
   accountService = inject(AccountService)
-  sourceAccount$: Observable<AccountModel | undefined> = new Observable(undefined)
-  destinationAccount$: Observable<AccountModel | undefined> = new Observable(undefined)
-
-  ngOnInit() {
-    this.sourceAccount$ = this.accountService.read(this.transaction().source_account ?? 0)
-    this.destinationAccount$ = this.accountService.read(this.transaction().destination_account ?? 0)
-  }
   
   openDialog(id: number) {
     const dialogRef = this.dialog.open(TransactionDelete, {data: {id: id}})
@@ -44,12 +34,4 @@ export class TransactionExpansion {
   goToTransactionDetail(id: number) {
     this.router.navigate(['/wimm/transactions/', id])
   }
-
-  getTransactionTitle(transaction: InputSignal<TransactionModel>):string {
-    if (transaction().description.length < 16) {
-      return transaction().description
-    }
-    return `${transaction().description.slice(0, 16)}...`
-  }
-
 }

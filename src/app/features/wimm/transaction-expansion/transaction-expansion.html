@@ -1,16 +1,16 @@
-<mat-expansion-panel>
+<mat-expansion-panel class="expansion-panel">
     <mat-expansion-panel-header>
         <mat-panel-title>{{ amount() }}</mat-panel-title>
-        <mat-panel-description>{{ (sourceAccount$ | async)?.name }} -> {{ (destinationAccount$ | async)?.name }}</mat-panel-description>
+        <mat-panel-description>{{ transaction().source_account_name }} -> {{ transaction().destination_account_name }}</mat-panel-description>
     </mat-expansion-panel-header>
     <mat-list>
         <mat-list-item>
             <mat-icon matListItemIcon fontIcon="calendar_month"></mat-icon>
-            <span matListItemLine>{{ transaction().timestamp.substring(0, 10)}}</span>
+            <span matListItemTitle>{{ transaction().timestamp.substring(0, 10)}}</span>
         </mat-list-item>
         <mat-list-item>
             <mat-icon matListItemIcon fontIcon="schedule"></mat-icon>
-            <span matListItemLine><span>{{ transaction().timestamp.substring(11, 19)}}</span></span>
+            <span matListItemTitle>{{ transaction().timestamp.substring(11, 19)}}</span>
         </mat-list-item>
     </mat-list>
     

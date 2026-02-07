@@ -6,10 +6,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatCardModule } from "@angular/material/card";
 
 @Component({
   selector: 'app-username-form',
-  imports: [ReactiveFormsModule, MatInputModule, MatButtonModule],
+  imports: [ReactiveFormsModule, MatInputModule, MatButtonModule, MatCardModule],
   templateUrl: './username-form.html',
   styleUrl: './username-form.scss'
 })

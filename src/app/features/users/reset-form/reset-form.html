@@ -1,10 +1,13 @@
 <form [formGroup]="resetForm" (submit)="onSubmit.emit(resetForm.controls.email.value ?? '')">
     <div class="form-container">
-        <mat-form-field>
-            <mat-label>Email</mat-label>
-            <input matInput [formControl]="resetForm.controls.email" required type="email"/>
-        </mat-form-field>
+        <mat-card class="card-style">
+            <h1 class="text-form">Resend Activation</h1>
+            <mat-form-field>
+                <mat-label>Email</mat-label>
+                <input matInput [formControl]="resetForm.controls.email" required type="email"/>
+            </mat-form-field>
 
-        <button matButton>{{ buttonAction() }}</button>
+            <button matButton="filled">{{ buttonAction() }}</button>
+        </mat-card>
     </div>
 </form>

@@ -1,5 +1,7 @@
+<h1>Apply Budget</h1>
+
 <form [formGroup]="budgetForm" (submit)="applyBudget()">
-    <mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
         <mat-label>Source Account</mat-label>
         <mat-select [formControl]="budgetForm.controls.sourceAccount">
             @for (account of accounts; track account.id) {
@@ -7,5 +9,7 @@
             }
         </mat-select>
     </mat-form-field>
-    <button matButton>Apply budget</button>
+    <div class="button-container">
+        <button matButton="filled">Apply budget</button>
+    </div>    
 </form>

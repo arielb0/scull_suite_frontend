@@ -1,6 +1,8 @@
+<h1>Update Configuration</h1>
+
 <section>
     <form [formGroup]="configurationForm" (submit)="submitConfiguration()">
-        <mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
             <mat-label>Currency</mat-label>
             <mat-select [formControl]="configurationForm.controls.currency">
                 <mat-option value="USD">United States Dollar</mat-option>
@@ -9,7 +11,7 @@
             </mat-select>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
             <mat-label>Currency Display</mat-label>
             <mat-select [formControl]="configurationForm.controls.currency_display">
                 <mat-option value="code">Code</mat-option>
@@ -18,7 +20,7 @@
             </mat-select>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
             <mat-label>Locale</mat-label>
             <mat-select [formControl]="configurationForm.controls.locale">
                 <mat-option value="en-EN">United States</mat-option>
@@ -29,6 +31,6 @@
             </mat-select>
         </mat-form-field>
 
-        <button matButton>Create or update</button>
+        <app-form-button [isUpdate]="isUpdate"></app-form-button>
     </form>
 </section>

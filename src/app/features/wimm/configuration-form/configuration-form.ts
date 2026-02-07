@@ -9,10 +9,11 @@ import { tap } from 'rxjs';
 import { ConfigurationService } from '../configuration-service/configuration-service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
+import { FormButton } from '../../../core/form-button/form-button';
 
 @Component({
   selector: 'app-configuration-form',
-  imports: [ReactiveFormsModule, MatInputModule, MatSelectModule, MatButtonModule],
+  imports: [ReactiveFormsModule, MatInputModule, MatSelectModule, MatButtonModule, FormButton],
   templateUrl: './configuration-form.html',
   styleUrl: './configuration-form.scss'
 })
@@ -28,10 +29,13 @@ export class ConfigurationForm {
     locale: new FormControl<string>(''),
   })
 
+  isUpdate: boolean = false
+
   constructor() {
     this.configurationService.read().pipe(
       tap(configuration => {
         if (configuration) {
+            this.isUpdate = true
             this.configurationForm.controls.currency.setValue(configuration.currency)
             this.configurationForm.controls.currency_display.setValue(configuration.currency_display)
             this.configurationForm.controls.locale.setValue(configuration.locale)

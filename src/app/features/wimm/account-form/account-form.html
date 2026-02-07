@@ -36,8 +36,10 @@
                 <mat-option [value]=5>Light Orange</mat-option>
                 <mat-option [value]=6>Light / Dark</mat-option>
             </mat-select>
-        </mat-form-field>
-
-        <button matButton>Create or update</button>
+        </mat-form-field>        
+        
+        <app-form-button [isUpdate]="isUpdate"></app-form-button>
+        
+        
     </form>
 </section>

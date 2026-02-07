@@ -9,26 +9,26 @@
             @if (account().goal_amount > 0) {
                 <mat-list-item>
                     <mat-icon matListItemIcon fontIcon="flag"></mat-icon>
-                    <span matListItemLine>{{ amount() }}</span>
+                    <span matListItemTitle>{{ amount() }}</span>
                 </mat-list-item>
             }
             @if (account().budget_percentage > 0) {
                 <mat-list-item>
                     <mat-icon matListItemIcon fontIcon="donut_large"></mat-icon>
-                    <span matListItemLine>{{ account().budget_percentage }} %</span>
+                    <span matListItemTitle>{{ account().budget_percentage }} %</span>
                 </mat-list-item>
             }            
             @if (account().include_on_summary_section) {
                 <mat-list-item>
                     <mat-icon matListItemIcon fontIcon="check"></mat-icon>
-                    <span matListItemLine>Summary Section</span>
+                    <span matListItemTitle>Summary Section</span>
                 </mat-list-item>
             }
 
             @if (account().include_on_total_amount) {
                 <mat-list-item>
                     <mat-icon matListItemIcon fontIcon="check"></mat-icon>
-                    <span matListItemLine>Total Amount</span>
+                    <span matListItemTitle>Total Amount</span>
                 </mat-list-item>
             }            
             

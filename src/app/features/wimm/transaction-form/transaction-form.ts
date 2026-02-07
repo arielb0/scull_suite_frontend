@@ -8,6 +8,7 @@ import { map, Observable, switchMap, tap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 
 import { TransactionService } from '../transaction-service/transaction-service';
+import { FormButton } from '../../../core/form-button/form-button';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AccountService } from '../account-service/account-service';
@@ -16,7 +17,7 @@ import { DatetimeService } from '../../../core/datetime-service/datetime-service
 
 @Component({
   selector: 'app-transaction-form',
-  imports: [ReactiveFormsModule, MatInputModule, MatSelectModule, MatButtonModule, AsyncPipe],
+  imports: [ReactiveFormsModule, MatInputModule, MatSelectModule, MatButtonModule, AsyncPipe, FormButton],
   templateUrl: './transaction-form.html',
   styleUrl: './transaction-form.scss'
 })
@@ -37,6 +38,8 @@ export class TransactionForm {
     description: new FormControl<string>('')
   })
 
+  isUpdate: boolean = false
+
   constructor() {
     this.route.paramMap.pipe(
       map(params => params.get('id')),
@@ -45,6 +48,7 @@ export class TransactionForm {
           return this.transactionService.read(Number(id)).pipe(
             tap(transaction => {
               if (transaction) {
+                  this.isUpdate = true
                   this.transactionForm.controls.timestamp.setValue(this.datetimeService.utcToLocal(transaction.timestamp))
                   this.transactionForm.controls.amount.setValue(transaction.amount)
                   this.transactionForm.controls.source_account.setValue(transaction.source_account)

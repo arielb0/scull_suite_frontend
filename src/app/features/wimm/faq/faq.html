@@ -1,0 +1,346 @@
+<h1>FAQ</h1>
+
+<section>
+    <h2>Basic Users</h2>
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    What is this and why does it exist?
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>
+                Where Is My Money (WIMM) is a web application that allows you 
+                to keep track of your financial life (savings, expenses, 
+                transactions, investments, income) so you can have clarity on 
+                how you use your money.This application arose from the 
+                author's need to organize his personal finances in one 
+                place, independently of banking apps and the way he stores his 
+                money.
+            </p>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    What problems does this application solve?
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>
+                As its name suggests, it helps you determine how you use your 
+                money and allocate it to cover your goals. These features are 
+                useful when you need to plan to achieve financial objectives 
+                that exceed your income.
+            </p>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Who is this application not for?
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>
+                This application requires organization, discipline, patience
+                , and basic financial literacy. You need to record every 
+                financial transaction as accurately as possible for it to 
+                work. If you don't possess these qualities, the application
+                 won't be useful to you.
+            </p>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    How to use it? (in 60 seconds)
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <ol>
+                <li>
+                    Register your user account.
+                </li>
+                <li>
+                    Go to "Settings" and personalize aspects of your
+                     user account.
+                </li>
+                <li>
+                    Go to "Accounts," create the necessary accounts 
+                    to manage your money, as well as their 
+                    corresponding budgets, goals, and descriptions.
+                </li>
+                <li>
+                    Go to "Transactions" and add the transactions. 
+                    In this section, you can budget (distribute 
+                    money from one account to others according to 
+                    a proportion), as well as search for a 
+                    specific transaction using the search function.
+                </li>
+                <li>
+                    Finally, the "Dashboard" displays a summary of 
+                    the money you have in each account, the status 
+                    of your goals, and graphs showing the evolution 
+                    of each account over time.
+                </li>
+            </ol>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>Is it free?</mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>
+                Yes, you can use all the software's features without 
+                paying a cent.
+            </p>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>How can I help?</mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>
+                You can collaborate in different ways, whether by suggesting 
+                improvements, reporting bugs, making donations, or simply by 
+                using and sharing the application!
+            </p>
+            <p><a href="mailto:arielscull90@gmail.com">Send me an email</a></p>
+            <button matButton="filled" (click)="copyLitecoinAddress()">Copy Litecoin Address</button>
+        </mat-expansion-panel>
+    </mat-accordion>
+</section>
+<section>
+    <h2>Advanced Users</h2>
+    <mat-accordion>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    What type of license does this application use?
+                </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>
+                This software is licensed under the MIT license 
+                (you can freely use, copy, modify, and distribute the software
+                , even for commercial purposes, as long as you maintain the 
+                copyright notice and the original license).
+            </p>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                Where can I see the code?
+            </mat-expansion-panel-header>
+            <p>
+                The application code is available in the repositories on GitHub, 
+                named 
+                <a href="https://github.com/arielb0/scull_suite_backend" target="blank">backend</a> 
+                and <a href="https://github.com/arielb0/scull_suite_frontend" target="blank">frontend</a>.
+            </p>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                What design decisions did the author make and why?
+            </mat-expansion-panel-header>
+            <p>
+                During the application's design, decisions focused on 
+                simplicity, scalability, and user experience were made. 
+                All of this was done taking into account the project's 
+                limitations.
+            </p>
+            <ul>
+                <li>
+                    Mobile First: This application was designed 
+                    prioritizing mobile devices. This design addresses 
+                    the fact that most users currently access content 
+                    on this type of device, and the content must be 
+                    legible without zooming or horizontal scrolling.
+                </li>
+                <li>
+                    Replacing tables with expandable lists and panels: 
+                    Initially, the use of tables to display information 
+                    was considered, but lists and cards were chosen 
+                    because they improve the user experience on small 
+                    screens.
+                </li>
+                <li>
+                    The design is scalable and ready to add features 
+                    without requiring major redesigns.
+                </li>
+            </ul>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                What technology does the project use and why?
+            </mat-expansion-panel-header>
+            <p>
+                WIMM uses different technologies for its operation. 
+                The main ones are:
+            </p>
+            <ul>
+                <li>
+                    PostgreSQL
+                </li>
+                <li>
+                    Django
+                </li>
+                <li>
+                    Angular
+                </li>
+            </ul>
+            <p>
+                This technology stack was carefully selected to meet 
+                the current and future needs of the project. The author 
+                made the selection based on their personal experience 
+                and research from various sources.
+            </p>
+            <p>
+                PostgreSQL is the database engine that was chosen due to its 
+                compatibility with the SQL standard, its open-source nature, 
+                and its good balance between performance, features, and 
+                resource consumption. Other alternatives considered were 
+                MariaDB, but this engine offers fewer features that will 
+                be used in the future of the project.
+            </p>
+            <p>
+                Django (and associated libraries, such as Django REST 
+                Framework) is the framework used for server-side development. 
+                Generally, Spring Boot is used in Spain, but the author 
+                decided to use Python and Django because in the future, this 
+                application will use functions related to Machine Learning 
+                and Artificial Intelligence. Python, the language Django uses,
+                has a mature ecosystem that allows for easy integration of 
+                these features.
+            </p>
+            <p>
+                Other alternatives considered were Flask and FastAPI. The 
+                author discarded these options because Django offers a 
+                complete, mature ecosystem ready for developing the 
+                application. Although Django might be somewhat 
+                resource-intensive for a simple REST API application,
+                the performance is acceptable.
+            </p>
+            <p>
+                Angular (and associated libraries, such as chart2-js) 
+                is the framework the author used for client-side development. 
+                Like Django, it offers a dogmatic philosophy that allows for 
+                easy code organization. It also has a complete ecosystem for 
+                developing single-page applications (SPAs) without having to 
+                make so many design decisions. It uses TypeScript, whose 
+                static typing facilitates finding and mitigating errors. 
+                Other alternatives considered were React, Vue, and Svelte. 
+                These options offer advantages such as faster learning 
+                curves, greater flexibility, and even better performance 
+                for a small project, but the author chose Angular because 
+                it offers greater future stability, code that can be 
+                maintained for longer, and project consistency.
+            </p>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                Is this a final product or a demonstration?
+            </mat-expansion-panel-header>
+            <p>
+                This software is in the demonstration phase.
+            </p>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                How is this demo tested or evaluated?
+            </mat-expansion-panel-header>
+            <p>
+                There is a test user account with the credentials user: 
+                testuser and pass: T3stus3r, which allows viewing default 
+                data and testing the different views of the application 
+                without having to go through the process of registering 
+                a user or entering data.
+            </p>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                What are the current limitations?
+            </mat-expansion-panel-header>
+            <ul>
+                <li>
+                    Paging needs to be implemented in the transactions view.
+                </li>
+                <li>
+                    Data import and export capabilities.
+                </li>
+                <li>
+                    Offline support capabilities. Not only should the interface 
+                    be displayed, but the user should have the option to save 
+                    their data on the device, without needing to do it on a 
+                    server. A more private option.
+                </li>
+                <li>
+                    The ability for a user to manage different currencies in 
+                    their account.
+                </li>
+                <li>
+                    Incorporating machine learning tools to predict the future 
+                    behavior of an account. This would help answer questions 
+                    like: "If things continue this way, when will I achieve 
+                    this goal?"
+                </li>
+                <li>
+                    The ability to input data using optical recognition of 
+                    tickets or invoices.
+                </li>
+            </ul>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                What did you learn building the application?
+            </mat-expansion-panel-header>
+            <ul>
+                <li>
+                    The author uses Django features such as Subqueries, 
+                    outerRef, and cached properties to avoid making 
+                    repetitive (and costly) calls to the database.
+                </li>
+                <li>
+                    User Interface design using the Mobile First methodology.
+                </li>
+                <li>
+                    In this application, I used the Model, Data Service, 
+                    Business Service, and Component architecture within 
+                    Angular, as well as a way to structure several 
+                    applications within a single project to reuse code.
+                </li>
+                <li>
+                    It is worth mentioning that, in this application, the 
+                    author found it necessary to adapt each Data Service 
+                    component, since not all of them possess full CRUD 
+                    functionality and some require additional methods.
+                </li>
+                <li>
+                    Use of styles that adapt to the type of device displaying 
+                    them (media queries).
+                </li>
+                <li>
+                    Use of styles that adapt to the theme of the device 
+                    displaying them (light-dark).
+                </li>
+                <li>
+                    The author learned that most of the business logic
+                    should be in the backend and that the frontend 
+                    should only have the behavior related to how the 
+                    information is displayed.
+                </li>
+            </ul>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                What is the next step for the project?
+            </mat-expansion-panel-header>
+            <p>
+                The author plans to implement the functionalities that 
+                are currently identified as limitations.
+            </p>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                Who is the author?
+            </mat-expansion-panel-header>
+            <p>
+                My name is Ariel Hernandez Scull. I focus on backend 
+                development with Python and product logic. I perform other 
+                roles functionally to deliver the most complete applications 
+                possible.
+            </p>
+        </mat-expansion-panel>
+    </mat-accordion>
+</section>

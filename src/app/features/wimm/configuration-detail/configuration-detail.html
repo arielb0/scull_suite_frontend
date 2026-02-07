@@ -1,13 +1,20 @@
+<h1>Configuration</h1>
+
 <section>
-    <a matButton routerLink="/wimm/configuration/update">
+  <div class="action-container">
+    <a matButton="filled" routerLink="/wimm/configuration/update">
         <mat-icon fontIcon="edit"></mat-icon>
         Update
     </a>
+  </div>
+    
   @if (configuration) {
-    <p>ID: {{ configuration.id }}</p>
-    <p>User: {{ configuration.user }}</p>
-    <p>Currency: {{ configuration.currency }}</p>
-    <p>Currency Display: {{ configuration.currency_display }} </p>
-    <p>Locale: {{ configuration.locale }}</p>
-}
+    <mat-card class="configuration-card">
+      <mat-card-content>
+        <p>Currency: {{ configuration.currency }}</p>
+        <p>Currency Display: {{ configuration.currency_display }} </p>
+        <p>Locale: {{ configuration.locale }}</p>
+      </mat-card-content>
+    </mat-card>
+  }
 </section>

@@ -4,10 +4,12 @@ import { ConfigurationModel } from '../configuration-model';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-configuration-detail',
-  imports: [MatButtonModule, MatIcon, RouterLink],
+  imports: [MatButtonModule, MatIcon, RouterLink, MatListModule, MatCardModule],
   templateUrl: './configuration-detail.html',
   styleUrl: './configuration-detail.scss',
 })

@@ -1,5 +1,6 @@
+<h1>Transactions</h1>
+
 <section>
- <h1>Transactions</h1>
 
  <div class="action-container">
   <a class="action-button" matButton="filled" routerLink="/wimm/transactions/create">
@@ -11,24 +12,18 @@
     <mat-icon fontIcon="donut_large"></mat-icon>
     Apply Budget
   </a>
- </div>
-
- <div>
-  <mat-form-field appearance="outline" container-height="-2">
+  
+  <mat-form-field>
     <mat-label>Search</mat-label>
-    <input matInput type="text">
-    <mat-icon matSuffix fontIcon="search"></mat-icon>
+    <input matInput (keyup)="applyFilter($event)" [formControl]="searchInput">
   </mat-form-field>
+  
  </div>
  
- <div>
-  <mat-accordion>
-    @for (transaction of transactions$ | async; track transaction.id) {
-      <app-transaction-expansion [transaction]="transaction" [amount]="transaction.amount | currency: configuration?.currency : configuration?.currency_display : '1.2-2' : configuration?.locale"></app-transaction-expansion>
-    } @empty {
-      <app-loading-spinner loadingMessage="Loading transactions"></app-loading-spinner>
-    }
-  </mat-accordion>
- </div> 
+ <mat-accordion>
+  @for (transaction of filteredTransactions; track transaction.id) {
+    <app-transaction-expansion [transaction]="transaction" [amount]="transaction.amount | currency: configuration?.currency : configuration?.currency_display : '1.2-2' : configuration?.locale"></app-transaction-expansion>
+  }
+ </mat-accordion>
 
 </section>

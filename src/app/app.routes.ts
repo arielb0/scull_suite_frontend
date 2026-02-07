@@ -172,9 +172,19 @@ export const routes: Routes = [
             title: 'Budget Form'
           }
         ]
-      }      
+      },
+      {
+        path: 'faq',
+        children: [
+          {
+            path: '',
+            loadComponent: () => import('./features/wimm/faq/faq').then(c => c.Faq),
+            title: 'Frecuent Asked Questions'
+          }
+        ]
+      }
     ]
-  },  
+  },
   {
     path: '**',
     loadComponent: () => import('./core/page-not-found/page-not-found').then(c => c.PageNotFoundComponent),

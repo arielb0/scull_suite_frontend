@@ -1,37 +1,36 @@
 <section class="main-section">
   @if (user$| async; as user) {
-    <h1>My Account Data</h1>
+
     <mat-list>
+      <h1>My Account Data</h1>
       <div class="list-container">
         <mat-list-item>
           <strong>Username:</strong> {{ user.username }}
-          <a matButton routerLink="/users/set_username">
-            <mat-icon fontIcon="edit"></mat-icon>
-            Edit
-          </a>
         </mat-list-item>
         <mat-list-item>
           <strong>Email:</strong> {{ user.email }}
         </mat-list-item>
         <mat-list-item>
-          <strong>Password:</strong> *******
-          <a matButton routerLink="/users/set_password">
+          <a matButton="filled" routerLink="/users/set_password">
             <mat-icon fontIcon="edit"></mat-icon>
-            Edit
+            Change Password
           </a>
+        </mat-list-item>
+        <mat-list-item>
+          <a matButton="outlined" routerLink="/users/set_username">
+            <mat-icon fontIcon="edit"></mat-icon>
+            Change Username
+          </a>
+        </mat-list-item>
+        <mat-list-item>
+          <button matButton (click)="openDeleteDialog()">
+            <mat-icon fontIcon="delete"></mat-icon>
+            Delete your account
+          </button>
         </mat-list-item>
       </div>
     </mat-list>
-    
-    
-    
-    <button matButton (click)="openDeleteDialog()">
-      <mat-icon fontIcon="delete"></mat-icon>
-      Delete your account
-    </button>
-    
   } @else {
     <p>Loading data..</p>
   }
 </section>
-

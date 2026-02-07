@@ -8,10 +8,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { UserService } from '../user-service/user-service';
 import { StorageService } from '../../../core/storage-service/storage-service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-user-form',
-  imports: [ReactiveFormsModule, MatInputModule, MatSelectModule, MatButtonModule, RouterLink],
+  imports: [ReactiveFormsModule, MatInputModule, MatSelectModule, MatButtonModule, RouterLink, MatCardModule],
   templateUrl: './user-form.html',
   styleUrl: './user-form.scss'
 })

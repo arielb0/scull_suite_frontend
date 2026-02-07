@@ -10,10 +10,11 @@ import { AccountService } from '../account-service/account-service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatCheckbox } from '@angular/material/checkbox';
+import { FormButton } from '../../../core/form-button/form-button';
 
 @Component({
   selector: 'app-account-form',
-  imports: [ReactiveFormsModule, MatInputModule, MatSelectModule, MatButtonModule, MatCheckbox],
+  imports: [ReactiveFormsModule, MatInputModule, MatSelectModule, MatButtonModule, MatCheckbox, FormButton],
   templateUrl: './account-form.html',
   styleUrl: './account-form.scss'
 })
@@ -22,7 +23,8 @@ export class AccountForm {
   router: Router = inject(Router)
   accountService: AccountService = inject(AccountService)
   _snackBar: MatSnackBar = inject(MatSnackBar)
-  
+  isUpdate: boolean = false
+    
   accountForm = new FormGroup({
     name: new FormControl<string>(''),
     goal_description: new FormControl<string>(''),
@@ -31,7 +33,7 @@ export class AccountForm {
     include_on_summary_section: new FormControl<boolean>(false),
     include_on_total_amount: new FormControl<boolean>(false),
     color: new FormControl<number>(0)
-  })
+  })  
 
   constructor() {
     this.route.paramMap.pipe(
@@ -41,6 +43,7 @@ export class AccountForm {
           return this.accountService.read(Number(id)).pipe(
             tap(account => {
               if (account) {
+                  this.isUpdate = true
                   this.accountForm.controls.name.setValue(account.name)
                   this.accountForm.controls.goal_description.setValue(account.goal_description)
                   this.accountForm.controls.goal_amount.setValue(account.goal_amount)

@@ -4,7 +4,7 @@
 
 @media screen and (max-width: 767px ) {
     mat-sidenav {
-        width: 70px;
+        width: 50px;
     }
 }
 
@@ -27,4 +27,19 @@ mat-sidenav-container {
     bottom: 0;
     left: 0;
     right: 0;
+}
+
+@media screen and (max-width: 767px ) {
+    mat-sidenav-content {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+@media screen and (min-width: 768px ) {
+    mat-sidenav-content {
+        padding-left: 10vw;
+        padding-right: 10vw;
+
+    }
 }

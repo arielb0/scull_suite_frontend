@@ -1,21 +1,25 @@
 <section>
     <form [formGroup]="loginForm" (submit)="submitLogin()">
         <div class="form-container">
-            <mat-form-field>
-                <mat-label>Username</mat-label>
-                <input matInput [formControl]="loginForm.controls.username">
-            </mat-form-field>
+            <mat-card class="card-style">
+                <h1 class="text-form">Login</h1>
+                <mat-form-field>
+                    <mat-label>Username</mat-label>
+                    <input matInput [formControl]="loginForm.controls.username">
+                </mat-form-field>
 
-            <mat-form-field>
-                <mat-label>Password</mat-label>
-                <input matInput type="password" [formControl]="loginForm.controls.password">
-            </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" [formControl]="loginForm.controls.password">
+                </mat-form-field>
+                
+                <a class="text-form" routerLink="/users/reset-password">Forgot password?</a>                
+                
+                <a class="text-form" routerLink="/users/create">Register</a>
 
-            <a href="/users/reset-password">Forgot password?</a>
-
-            <a routerLink="/users/create">Register</a>
-
-            <button matButton>Login</button>
+                <button matButton="filled">Login</button>
+            </mat-card>
+            
         </div>
     </form>
 </section>
