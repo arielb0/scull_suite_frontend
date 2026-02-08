@@ -6,6 +6,11 @@ import { WimmLayout } from './features/wimm/wimm-layout/wimm-layout';
 
 export const routes: Routes = [
   {
+    path: '',
+    loadComponent: () => import('./features/home/home/home').then(c => c.Home),
+    title: 'Home'
+  },
+  {
     path: 'auth',
     component: AuthLayout,
     children: [

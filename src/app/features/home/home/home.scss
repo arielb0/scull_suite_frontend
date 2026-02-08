@@ -1,0 +1,26 @@
+.card-grid {
+    display: grid;
+    gap: 15px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(90px, 250px));
+}
+
+@media screen and (max-width: 767px ) {
+    section {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+@media screen and (min-width: 768px ) {
+    section {
+        padding-left: 10vw;
+        padding-right: 10vw;
+
+    }
+}
+
+.card-style {
+    max-width: 300px;
+}
