@@ -8,7 +8,7 @@
     </mat-card-header>
 
     <mat-card-content>
-        <p>Timestamp: {{ transaction().timestamp }}</p>
+        <p>Timestamp: {{ localDate() }}</p>
         <p>Amount: {{ transaction().amount }}</p>
         <p>Source account: {{ (sourceAccount$ | async)?.name }}</p>
         <p>Destination account: {{ (destinationAccount$ | async)?.name }}</p>

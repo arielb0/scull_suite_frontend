@@ -6,11 +6,11 @@
     <mat-list>
         <mat-list-item>
             <mat-icon matListItemIcon fontIcon="calendar_month"></mat-icon>
-            <span matListItemTitle>{{ transaction().timestamp.substring(0, 10)}}</span>
+            <span matListItemTitle>{{ localDate().substring(0, 10)}}</span>
         </mat-list-item>
         <mat-list-item>
             <mat-icon matListItemIcon fontIcon="schedule"></mat-icon>
-            <span matListItemTitle>{{ transaction().timestamp.substring(11, 19)}}</span>
+            <span matListItemTitle>{{ localDate().substring(11, 19)}}</span>
         </mat-list-item>
     </mat-list>
     

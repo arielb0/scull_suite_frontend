@@ -1,4 +1,4 @@
-import { Component, inject, input, InputSignal } from '@angular/core';
+import { Component, computed, inject, input, InputSignal, Signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { TransactionModel } from '../transaction-model';
@@ -11,6 +11,7 @@ import { AccountModel } from '../account-model';
 import { Observable } from 'rxjs';
 import { AccountService } from '../account-service/account-service';
 import { AsyncPipe } from '@angular/common';
+import { DatetimeService } from '../../../core/datetime-service/datetime-service';
 
 @Component({
   selector: 'app-transaction-card',
@@ -27,10 +28,15 @@ export class TransactionCard {
   accountService = inject(AccountService)
   sourceAccount$: Observable<AccountModel | undefined> = new Observable(undefined)
   destinationAccount$: Observable<AccountModel | undefined> = new Observable(undefined)
+  datetimeService: DatetimeService = inject(DatetimeService)
+  localDate: Signal<string> = computed(() => 'hello')
 
   ngOnInit() {
     this.sourceAccount$ = this.accountService.read(this.transaction().source_account ?? 0)
     this.destinationAccount$ = this.accountService.read(this.transaction().destination_account ?? 0)
+    this.localDate = computed(() => {
+      return 'hello' //new Date(this.transaction().timestamp).toString()
+    })
   }
   
   openDialog(id: number) {
@@ -40,12 +46,6 @@ export class TransactionCard {
   goToTransactionDetail(id: number) {
     this.router.navigate(['/wimm/transactions/', id])
   }
-
-  getTransactionTitle(transaction: InputSignal<TransactionModel>):string {
-    if (transaction().description.length < 16) {
-      return transaction().description
-    }
-    return `${transaction().description.slice(0, 16)}...`
-  } 
+  
 
 }

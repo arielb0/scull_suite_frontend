@@ -1,4 +1,4 @@
-import { Component, inject, input, InputSignal } from '@angular/core';
+import { Component, computed, inject, input, InputSignal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { TransactionModel } from '../transaction-model';
@@ -11,6 +11,7 @@ import { AccountService } from '../account-service/account-service';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { DatetimeService } from '../../../core/datetime-service/datetime-service';
 
 @Component({
   selector: 'app-transaction-expansion',
@@ -24,6 +25,11 @@ export class TransactionExpansion {
   amount = input.required<string | null>()
   authService = inject(AuthService)
   router = inject(Router)
+  datetimeService = inject(DatetimeService)
+
+  localDate = computed(() => {
+    return this.datetimeService.getLocalDateISOString(new Date(this.transaction().timestamp))
+  })
   
   accountService = inject(AccountService)
   

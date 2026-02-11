@@ -28,10 +28,10 @@ export class TransactionForm {
   accountService: AccountService = inject(AccountService)
   accounts$: Observable<AccountModel[]> = this.accountService.accounts$
   _snackBar: MatSnackBar = inject(MatSnackBar)
-  datetimeService: DatetimeService = inject(DatetimeService)
+  datetimeService: DatetimeService = inject(DatetimeService)  
   
   transactionForm = new FormGroup({
-    timestamp: new FormControl<string>(this.datetimeService.getISODate(new Date())),
+    timestamp: new FormControl<string>(this.datetimeService.getLocalDateISOString(new Date())),
     amount: new FormControl<number>(0),
     source_account: new FormControl<number>(0),
     destination_account: new FormControl<number>(0),
@@ -48,8 +48,13 @@ export class TransactionForm {
           return this.transactionService.read(Number(id)).pipe(
             tap(transaction => {
               if (transaction) {
+                  console.log(`This is the date returned from server (UTC): ${transaction.timestamp}`)
+                  console.log(`This is the date returned from server converted to local: ${(new Date(transaction.timestamp)).toString()}`)
+                  console.log(`This is the date retuned from server, converted to local and ISO format ${this.datetimeService.getLocalDateISOString(new Date(transaction.timestamp))}`)
+
                   this.isUpdate = true
-                  this.transactionForm.controls.timestamp.setValue(this.datetimeService.utcToLocal(transaction.timestamp))
+                  this.transactionForm.controls.timestamp.setValue(this.datetimeService
+                    .getLocalDateISOString(new Date(transaction.timestamp)))
                   this.transactionForm.controls.amount.setValue(transaction.amount)
                   this.transactionForm.controls.source_account.setValue(transaction.source_account)
                   this.transactionForm.controls.destination_account.setValue(transaction.destination_account)
@@ -84,7 +89,7 @@ export class TransactionForm {
       
       this.transactionService.update({
         id: this.route.snapshot.params['id'],
-        timestamp: this.transactionForm.value.timestamp ?? '',
+        timestamp: this.datetimeService.getUTCDate(this.transactionForm.value.timestamp ?? ''), // Submit date using new Date(dateVariable).toISOString()
         amount: this.transactionForm.value.amount ?? 0,
         source_account: Number(this.transactionForm.value.source_account) ?? 0,
         destination_account: Number(this.transactionForm.value.destination_account) ?? 0,
@@ -95,7 +100,7 @@ export class TransactionForm {
       })
     } else {
       this.transactionService.create({
-        timestamp: this.transactionForm.value.timestamp ?? '',
+        timestamp: this.datetimeService.getUTCDate(this.transactionForm.value.timestamp ?? ''),
         amount: this.transactionForm.value.amount ?? 0,
         source_account: Number(this.transactionForm.value.source_account) ?? 0,
         destination_account: Number(this.transactionForm.value.destination_account) ?? 0,
