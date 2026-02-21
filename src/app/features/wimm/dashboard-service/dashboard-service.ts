@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap, map, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 import { ApiRestService } from '../../../core/api-rest-service/api-rest-service';
 import { environment } from '../../../../environments/environment';

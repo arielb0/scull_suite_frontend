@@ -1,28 +1,31 @@
 import { Component } from '@angular/core';
 import { inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, catchError, Observable } from 'rxjs';
 import { CurrencyPipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatAccordion } from '@angular/material/expansion'
-import { tap } from 'rxjs';
+import { map, tap, of } from 'rxjs';
+import { combineLatest } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
+import { RouterLink } from "@angular/router";
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 import { TransactionService } from '../transaction-service/transaction-service';
 import { TransactionModel } from '../transaction-model';
 import { AccountService } from '../account-service/account-service';
 import { AccountModel } from '../account-model';
-import { RouterLink } from "@angular/router";
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
 import { TransactionExpansion } from '../transaction-expansion/transaction-expansion';
 import { ConfigurationService } from '../configuration-service/configuration-service';
 import { ConfigurationModel } from '../configuration-model';
-import { MatInputModule } from '@angular/material/input';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-transaction-list',
-  imports: [TransactionExpansion, RouterLink, MatIconModule, MatButtonModule, MatAccordion, CurrencyPipe, ReactiveFormsModule, MatInputModule],
+  imports: [TransactionExpansion, RouterLink, MatIconModule, MatButtonModule, MatAccordion, 
+    CurrencyPipe, ReactiveFormsModule, MatInputModule, AsyncPipe],
   templateUrl: './transaction-list.html',
   styleUrl: './transaction-list.scss'
 })
@@ -30,8 +33,7 @@ export class TransactionList {
 
   transactionService = inject(TransactionService)
   transactions$: Observable<TransactionModel[]> = this.transactionService.transactions$
-  transactions: TransactionModel[] = []
-  filteredTransactions: TransactionModel[] = []
+  filteredTransactions$: Observable<TransactionModel[]> = this.transactionService.transactions$
   
   accountService = inject(AccountService)
   accounts$: Observable<AccountModel[]> = this.accountService.accounts$
@@ -42,9 +44,9 @@ export class TransactionList {
   _snackBar: MatSnackBar = inject(MatSnackBar)
 
   searchInput: FormControl<string | null> = new FormControl<string>('')
+  filter$: BehaviorSubject<string | null> = new BehaviorSubject(this.searchInput.value)
 
   constructor() {
-
     this.configurationService.read().pipe(
       tap((response) => {
         if (response) {
@@ -56,10 +58,18 @@ export class TransactionList {
     })
 
     this.transactionService.list().subscribe({
-      next: (response) => this.transactions = this.filteredTransactions = response,
       error: (err: HttpErrorResponse) => this._snackBar.open(err.statusText, 'Done')
-
     })
+
+    this.filteredTransactions$ = combineLatest([this.transactions$, this.filter$]).pipe(
+      map(([transactions, filter]) => {
+        if (filter === '') {
+          return transactions
+        } else {
+          return transactions.filter((transaction) => transaction.keywords?.toLowerCase().includes(filter ?? ''))
+        }        
+      })
+    )
 
     this.accountService.list().subscribe({
       error: (err: HttpErrorResponse) => this._snackBar.open(err.statusText, 'Done')
@@ -67,16 +77,8 @@ export class TransactionList {
 
   }
 
-  applyFilter(event: Event) {
-    let filterValue = this.searchInput.value
-
-    if (filterValue == '') {
-      this.filteredTransactions = this.transactions
-    } else {
-      this.filteredTransactions = this.transactions.filter((transaction) => {
-        return transaction.keywords?.toLowerCase().includes(filterValue ?? '')
-      })
-    }
+  setFilter(event: Event) {
+    this.filter$.next(this.searchInput.value)
   }
 
 }

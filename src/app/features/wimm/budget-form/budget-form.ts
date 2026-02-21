@@ -1,13 +1,14 @@
 import { Component, inject } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
-import { AccountService } from '../account-service/account-service';
-import { AccountModel } from '../account-model';
-import { BudgetService } from '../budget-service/budget-service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+
+import { AccountService } from '../account-service/account-service';
+import { AccountModel } from '../account-model';
+import { BudgetService } from '../budget-service/budget-service';
 
 @Component({
   selector: 'app-budget-form',
@@ -40,7 +41,7 @@ export class BudgetForm {
     this.budgetService.apply({
       source_account: this.budgetForm.value.sourceAccount ?? 0
     }).subscribe({
-      error: (err: HttpErrorResponse) => this._matSnackBar.open(err.error.detail, 'Done'),
+      error: (err: HttpErrorResponse) => this._matSnackBar.open(err.message, 'Done', {duration: 3000}),
       complete: () => this.router.navigate(['/wimm/transactions'])
     })
   }

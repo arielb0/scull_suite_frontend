@@ -48,10 +48,6 @@ export class TransactionForm {
           return this.transactionService.read(Number(id)).pipe(
             tap(transaction => {
               if (transaction) {
-                  console.log(`This is the date returned from server (UTC): ${transaction.timestamp}`)
-                  console.log(`This is the date returned from server converted to local: ${(new Date(transaction.timestamp)).toString()}`)
-                  console.log(`This is the date retuned from server, converted to local and ISO format ${this.datetimeService.getLocalDateISOString(new Date(transaction.timestamp))}`)
-
                   this.isUpdate = true
                   this.transactionForm.controls.timestamp.setValue(this.datetimeService
                     .getLocalDateISOString(new Date(transaction.timestamp)))
@@ -80,32 +76,33 @@ export class TransactionForm {
   }
 
   errorCallback(err: HttpErrorResponse) {
-    this._snackBar.open(err.statusText, 'Done')
+    this._snackBar.open(err.message, 'Done', {duration: 3000})
+  }
+
+  setFormData() {
+    return {
+      timestamp: this.datetimeService.getUTCDate(this.transactionForm.value.timestamp ?? ''),
+      amount: this.transactionForm.value.amount ?? 0,
+      source_account: Number(this.transactionForm.value.source_account) ?? 0,
+      destination_account: Number(this.transactionForm.value.destination_account) ?? 0,
+      description: this.transactionForm.value.description ?? '',
+    }
   }
 
   submitTransaction() {    
     
     if (this.route.snapshot.params['id']) {
       
-      this.transactionService.update({
-        id: this.route.snapshot.params['id'],
-        timestamp: this.datetimeService.getUTCDate(this.transactionForm.value.timestamp ?? ''), // Submit date using new Date(dateVariable).toISOString()
-        amount: this.transactionForm.value.amount ?? 0,
-        source_account: Number(this.transactionForm.value.source_account) ?? 0,
-        destination_account: Number(this.transactionForm.value.destination_account) ?? 0,
-        description: this.transactionForm.value.description ?? '',
-      }).subscribe({
+      this.transactionService.update(
+        Object.assign(this.setFormData(), {id: this.route.snapshot.params['id']})
+        ).subscribe({
         complete: () => this.completeCallback(),
         error: (err: HttpErrorResponse) => this.errorCallback(err)
       })
     } else {
-      this.transactionService.create({
-        timestamp: this.datetimeService.getUTCDate(this.transactionForm.value.timestamp ?? ''),
-        amount: this.transactionForm.value.amount ?? 0,
-        source_account: Number(this.transactionForm.value.source_account) ?? 0,
-        destination_account: Number(this.transactionForm.value.destination_account) ?? 0,
-        description: this.transactionForm.value.description ?? '',
-      }).subscribe({
+      this.transactionService.create(
+        this.setFormData()
+      ).subscribe({
         complete: () => this.completeCallback(),
         error: (err: HttpErrorResponse) => this.errorCallback(err)
       })

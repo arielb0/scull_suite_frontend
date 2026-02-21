@@ -14,4 +14,5 @@ export class MetricCard {
   metricValue: InputSignal<string | number | null> = input.required()
   color: InputSignal<number> = input.required()
   accountService = inject(AccountService)
+  
 }

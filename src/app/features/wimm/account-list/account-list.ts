@@ -1,18 +1,17 @@
 import { Component } from '@angular/core';
 import { inject } from '@angular/core';
-import { Observable } from 'rxjs';
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { tap } from 'rxjs';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButton } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
+import { tap, Observable } from 'rxjs';
 
 import { AccountCard } from '../account-card/account-card';
 import { AccountService } from '../account-service/account-service';
 import { AccountModel } from '../account-model';
 import { LoadingSpinner } from '../../../core/loading-spinner/loading-spinner';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButton } from '@angular/material/button';
-import { RouterLink } from '@angular/router';
 import { ConfigurationService } from '../configuration-service/configuration-service';
 import { ConfigurationModel } from '../configuration-model';
 
@@ -44,7 +43,7 @@ export class AccountList {
     })
     
     this.accountService.list().subscribe({
-      error: (err: HttpErrorResponse) => this._snackBar.open(err.statusText, 'Done')
+      error: (err: HttpErrorResponse) => this._snackBar.open(err.message, 'Done', {duration: 3000})
     })
   }
 

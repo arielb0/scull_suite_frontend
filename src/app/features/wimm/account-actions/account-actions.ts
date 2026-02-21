@@ -1,10 +1,11 @@
 import { Component, inject, input } from '@angular/core';
-import { AccountModel } from '../account-model';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { AccountDelete } from '../account-delete/account-delete';
 import { RouterLink } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+
+import { AccountModel } from '../account-model';
+import { AccountDelete } from '../account-delete/account-delete';
 
 @Component({
   selector: 'app-account-actions',

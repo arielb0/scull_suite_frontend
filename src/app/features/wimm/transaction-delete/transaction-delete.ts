@@ -25,7 +25,7 @@ export class TransactionDelete {
         const matDialogRef = this.dialog.closeAll()
       },
       error: (err: HttpErrorResponse) => {
-        this._snackBar.open(err.message, 'Done')
+        this._snackBar.open(err.message, 'Done', {duration: 3000})
       }
     })
   }

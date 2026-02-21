@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class DatetimeService {
 
   /**
-   * Return date 
+   * Return local date string as ISO 8601
    */
   getLocalDateISOString(date: Date): string {
     

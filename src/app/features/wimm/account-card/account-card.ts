@@ -1,21 +1,22 @@
 import { Component, inject, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { AccountModel } from '../account-model';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { MatListModule } from "@angular/material/list";
+import { MatIcon } from '@angular/material/icon';
+import { PercentPipe } from '@angular/common';
+
+import { AccountService } from '../account-service/account-service';
+import { AccountModel } from '../account-model';
 import { AccountDelete } from '../account-delete/account-delete';
 import { AuthService } from '../../auth/auth-service/auth-service';
 import { AccountActions } from '../account-actions/account-actions';
-import { MatListModule } from "@angular/material/list";
-import { MatIcon } from '@angular/material/icon';
-import { AccountService } from '../account-service/account-service';
-import { CurrencyPipe } from '@angular/common';
 import { ConfigurationModel } from '../configuration-model';
 
 @Component({
   selector: 'app-account-card',
-  imports: [MatCardModule, MatButtonModule, AccountActions, MatListModule, MatIcon],
+  imports: [MatCardModule, MatButtonModule, AccountActions, MatListModule, MatIcon, PercentPipe],
   templateUrl: './account-card.html',
   styleUrl: './account-card.scss'
 })

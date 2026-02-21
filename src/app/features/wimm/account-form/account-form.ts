@@ -47,7 +47,7 @@ export class AccountForm {
                   this.accountForm.controls.name.setValue(account.name)
                   this.accountForm.controls.goal_description.setValue(account.goal_description)
                   this.accountForm.controls.goal_amount.setValue(account.goal_amount)
-                  this.accountForm.controls.budget_percentage.setValue(account.budget_percentage)
+                  this.accountForm.controls.budget_percentage.setValue(account.budget_percentage * 100)
                   this.accountForm.controls.include_on_summary_section.setValue(account.include_on_summary_section)
                   this.accountForm.controls.include_on_total_amount.setValue(account.include_on_total_amount)
                   this.accountForm.controls.color.setValue(account.color)
@@ -58,7 +58,7 @@ export class AccountForm {
         return new Observable()
       })
     ).subscribe({
-      error: (err: HttpErrorResponse) => this._snackBar.open(err.message, 'Done') 
+      error: (err: HttpErrorResponse) => this._snackBar.open(err.message, 'Done', {duration: 3000}) 
     })
     
   }  
@@ -68,36 +68,35 @@ export class AccountForm {
   }
 
   errorCallback(err: HttpErrorResponse) {
-    this._snackBar.open(err.statusText, 'Done')
+    this._snackBar.open(err.message, 'Done')
+  }
+
+  setFormData() {
+
+    return { name: this.accountForm.value.name ?? '',
+    goal_description: this.accountForm.value.goal_description ?? '',
+    goal_amount: Number(this.accountForm.value.goal_amount) ?? 0,
+    budget_percentage: (this.accountForm.value.budget_percentage  ?? 0) / 100,
+    include_on_summary_section: this.accountForm.value.include_on_summary_section ?? false,
+    include_on_total_amount: this.accountForm.value.include_on_total_amount ?? false,
+    color: this.accountForm.value.color ?? 0 }
+
   }
 
   submitAccount() {    
     
     if (this.route.snapshot.params['id']) {
       
-      this.accountService.update({
-        id: this.route.snapshot.params['id'],
-        name: this.accountForm.value.name ?? '',
-        goal_description: this.accountForm.value.goal_description ?? '',
-        goal_amount: Number(this.accountForm.value.goal_amount) ?? 0,
-        budget_percentage: this.accountForm.value.budget_percentage ?? 0,
-        include_on_summary_section: this.accountForm.value.include_on_summary_section ?? false,
-        include_on_total_amount: this.accountForm.value.include_on_total_amount ?? false,
-        color: this.accountForm.value.color ?? 0
-      }).subscribe({
+      this.accountService.update(
+        Object.assign(this.setFormData(), {id: this.route.snapshot.params['id']})
+     ).subscribe({
         complete: () => this.completeCallback(),
         error: (err: HttpErrorResponse) => this.errorCallback(err)
       })
     } else {
-      this.accountService.create({
-        name: this.accountForm.value.name ?? '',
-        goal_description: this.accountForm.value.goal_description ?? '',
-        goal_amount: Number(this.accountForm.value.goal_amount) ?? 0,
-        budget_percentage: this.accountForm.value.budget_percentage ?? 0,
-        include_on_summary_section: this.accountForm.value.include_on_summary_section ?? false,
-        include_on_total_amount: this.accountForm.value.include_on_total_amount ?? false,
-        color: this.accountForm.value.color ?? 0
-      }).subscribe({
+      this.accountService.create(
+      this.setFormData()
+     ).subscribe({
         complete: () => this.completeCallback(),
         error: (err: HttpErrorResponse) => this.errorCallback(err)
       })

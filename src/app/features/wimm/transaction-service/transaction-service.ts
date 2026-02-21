@@ -58,18 +58,19 @@ export class TransactionService {
   delete(id: number): Observable<Object> {
     return this.apiRestService.delete<TransactionModel>(`${TransactionService.url}${id}/`).pipe(
       tap(response => {        
-        const currentStatus = this.transactionsSubject.value        
+        const currentStatus = this.transactionsSubject.value
         this.transactionsSubject.next(currentStatus.filter(Transaction => Transaction.id !== id))
       })
     ) as Observable<Object>
   }
 
   list(): Observable<TransactionModel[]> {
+    
     return this.apiRestService.read<TransactionModel[]>(TransactionService.url).pipe(
       tap(response => {
         this.transactionsSubject.next(response)
       })
     ) as Observable<TransactionModel[]>
   }
-
+   
 }

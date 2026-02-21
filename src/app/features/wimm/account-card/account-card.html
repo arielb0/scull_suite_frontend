@@ -12,12 +12,14 @@
                     <span matListItemTitle>{{ amount() }}</span>
                 </mat-list-item>
             }
+
             @if (account().budget_percentage > 0) {
                 <mat-list-item>
                     <mat-icon matListItemIcon fontIcon="donut_large"></mat-icon>
-                    <span matListItemTitle>{{ account().budget_percentage }} %</span>
+                    <span matListItemTitle>{{ account().budget_percentage | percent }}</span>
                 </mat-list-item>
-            }            
+            }
+
             @if (account().include_on_summary_section) {
                 <mat-list-item>
                     <mat-icon matListItemIcon fontIcon="check"></mat-icon>

@@ -1,13 +1,16 @@
 import { Component, inject } from '@angular/core';
-import { MatDialogTitle, MatDialogClose, MatDialogActions, MatDialogContent, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
-import { AccountService } from '../account-service/account-service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatDialogTitle, MatDialogClose, MatDialogActions, MatDialogContent, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+
+import { AccountService } from '../account-service/account-service';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @Component({
   selector: 'app-account-delete',
-  imports: [MatDialogTitle, MatDialogClose, MatDialogActions, MatDialogContent],
+  imports: [MatDialogTitle, MatDialogClose, MatDialogActions, MatDialogContent, MatButtonModule],
   templateUrl: './account-delete.html',
   styleUrl: './account-delete.scss',
 })

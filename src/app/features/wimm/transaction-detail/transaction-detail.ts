@@ -40,7 +40,7 @@ export class TransactionDetail {
       switchMap(() => this.accountService.read(this.transaction?.destination_account ?? 0)),
       tap((destinationAccount) => this.destinationAccount = destinationAccount)
     ).subscribe({
-      error: (err: HttpErrorResponse) => this._snackBar.open(err.statusText, 'Done')
+      error: (err: HttpErrorResponse) => this._snackBar.open(err.message, 'Done', {duration: 3000})
     })
   }
 

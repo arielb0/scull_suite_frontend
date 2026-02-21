@@ -5,10 +5,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { tap } from 'rxjs';
-
-import { ConfigurationService } from '../configuration-service/configuration-service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
+
+import { ConfigurationService } from '../configuration-service/configuration-service';
 import { FormButton } from '../../../core/form-button/form-button';
 
 @Component({
@@ -51,7 +51,7 @@ export class ConfigurationForm {
   }
 
   errorCallback(err: HttpErrorResponse) {
-    this._snackBar.open(err.statusText, 'Done')
+    this._snackBar.open(err.message, 'Done', {duration: 3000})
   }
 
   submitConfiguration() {

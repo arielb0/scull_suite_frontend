@@ -5,10 +5,9 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatIcon } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
-
-import { AuthService } from '../../auth/auth-service/auth-service';
 import { MatListModule } from '@angular/material/list';
 
+import { AuthService } from '../../auth/auth-service/auth-service';
 
 @Component({
   selector: 'app-wimm-layout',

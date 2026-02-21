@@ -20,22 +20,22 @@
                     <app-metric-card [metricName]="account.name" [metricValue]="account.amount | currency: configuration?.currency : configuration?.currency_display : '1.2-2' : configuration?.locale" [color]="account.color"></app-metric-card>
 
                     @if (account.goal_amount > 0) {
-                        <app-metric-card [metricName]="`${account.name} Goal Status`" [metricValue]="`${account.amount * 100 / account.goal_amount}%`" [color]="account.color"></app-metric-card>
+                        <app-metric-card [metricName]="`${account.name} Goal Status`" [metricValue]="account.amount / account.goal_amount | percent: '1.2'" [color]="account.color"></app-metric-card>
                     }
                 }
 
-                <app-metric-card metricName="Budget Usage" [metricValue]="`${dashboard.total_budget}%`" [color]=2></app-metric-card>
+                <app-metric-card metricName="Budget Usage" [metricValue]="dashboard.total_budget | percent: '1.2'" [color]=2></app-metric-card>
             </div>            
             
             <div class="summary-chart-grid">
                 @for (account of dashboard.accounts; track account.id) {
                     <div class="summary-chart-container">
-                        <app-summary-chart [accountName]="`${account.name} (${account.budget_percentage}%)`" [accountId]="account.id" [color]="account.color"></app-summary-chart>
+                        <app-summary-chart [accountName]="`${account.name} (${account.budget_percentage | percent:'1.2'})`" [accountId]="account.id" [color]="account.color"></app-summary-chart>
                     </div>
                 }
             </div>
         }
     } @else {
-        <app-loading-spinner loadingMessage="Loading recipe data.."></app-loading-spinner>
+        <app-loading-spinner loadingMessage="Loading dashboard data.."></app-loading-spinner>
     }
 </section>

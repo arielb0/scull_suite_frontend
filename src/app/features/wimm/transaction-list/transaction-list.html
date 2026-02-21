@@ -15,13 +15,13 @@
   
   <mat-form-field>
     <mat-label>Search</mat-label>
-    <input matInput (keyup)="applyFilter($event)" [formControl]="searchInput">
+    <input matInput (keyup)="setFilter($event)" [formControl]="searchInput">
   </mat-form-field>
   
  </div>
  
  <mat-accordion>
-  @for (transaction of filteredTransactions; track transaction.id) {
+  @for (transaction of filteredTransactions$ | async; track transaction.id) {
     <app-transaction-expansion [transaction]="transaction" [amount]="transaction.amount | currency: configuration?.currency : configuration?.currency_display : '1.2-2' : configuration?.locale"></app-transaction-expansion>
   }
  </mat-accordion>
