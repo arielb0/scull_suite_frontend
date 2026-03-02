@@ -24,13 +24,13 @@
                     }
                 }
 
-                <app-metric-card metricName="Budget Usage" [metricValue]="dashboard.total_budget | percent: '1.2'" [color]=2></app-metric-card>
+                <app-metric-card metricName="Budget Usage" [metricValue]="dashboard.total_budget | percent: '1.2-2': configuration?.locale" [color]=2></app-metric-card>
             </div>            
             
             <div class="summary-chart-grid">
                 @for (account of dashboard.accounts; track account.id) {
                     <div class="summary-chart-container">
-                        <app-summary-chart [accountName]="`${account.name} (${account.budget_percentage | percent:'1.2'})`" [accountId]="account.id" [color]="account.color"></app-summary-chart>
+                        <app-summary-chart [accountName]="`${account.name} (${account.budget_percentage | percent: '1.2-2': configuration?.locale})`" [accountId]="account.id" [color]="account.color"></app-summary-chart>
                     </div>
                 }
             </div>

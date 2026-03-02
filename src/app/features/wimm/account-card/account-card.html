@@ -16,7 +16,7 @@
             @if (account().budget_percentage > 0) {
                 <mat-list-item>
                     <mat-icon matListItemIcon fontIcon="donut_large"></mat-icon>
-                    <span matListItemTitle>{{ account().budget_percentage | percent }}</span>
+                    <span matListItemTitle>{{ account().budget_percentage | percent: "1.2-2": configuration?.locale }}</span>
                 </mat-list-item>
             }
 

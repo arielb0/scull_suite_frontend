@@ -4,10 +4,11 @@ import { TransactionService } from '../transaction-service/transaction-service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-transaction-delete',
-  imports: [MatDialogTitle, MatDialogClose, MatDialogActions, MatDialogContent],
+  imports: [MatDialogTitle, MatDialogClose, MatDialogActions, MatDialogContent, MatButtonModule],
   templateUrl: './transaction-delete.html',
   styleUrl: './transaction-delete.scss',
 })

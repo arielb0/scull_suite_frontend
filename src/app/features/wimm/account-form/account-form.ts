@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { FormButton } from '../../../core/form-button/form-button';
+import { AccountModel } from '../account-model';
 
 @Component({
   selector: 'app-account-form',
@@ -47,7 +48,7 @@ export class AccountForm {
                   this.accountForm.controls.name.setValue(account.name)
                   this.accountForm.controls.goal_description.setValue(account.goal_description)
                   this.accountForm.controls.goal_amount.setValue(account.goal_amount)
-                  this.accountForm.controls.budget_percentage.setValue(account.budget_percentage * 100)
+                  this.accountForm.controls.budget_percentage.setValue(Number((account.budget_percentage * 100).toPrecision(3)))
                   this.accountForm.controls.include_on_summary_section.setValue(account.include_on_summary_section)
                   this.accountForm.controls.include_on_total_amount.setValue(account.include_on_total_amount)
                   this.accountForm.controls.color.setValue(account.color)
@@ -71,12 +72,12 @@ export class AccountForm {
     this._snackBar.open(err.message, 'Done')
   }
 
-  setFormData() {
+  setFormData(): AccountModel {
 
     return { name: this.accountForm.value.name ?? '',
     goal_description: this.accountForm.value.goal_description ?? '',
     goal_amount: Number(this.accountForm.value.goal_amount) ?? 0,
-    budget_percentage: (this.accountForm.value.budget_percentage  ?? 0) / 100,
+    budget_percentage: Number(((this.accountForm.value.budget_percentage ?? 0) / 100).toPrecision(3)),
     include_on_summary_section: this.accountForm.value.include_on_summary_section ?? false,
     include_on_total_amount: this.accountForm.value.include_on_total_amount ?? false,
     color: this.accountForm.value.color ?? 0 }
